@@ -104,14 +104,9 @@ class MoviesUpdate extends Component {
                     onChange={this.handleChangeInputName}
                 />
 
-                <Label>Rating: </Label>
+                <Label>Descrition: </Label>
                 <InputText
-                    type="number"
-                    step="0.1"
-                    lang="en-US"
-                    min="0"
-                    max="10"
-                    pattern="[0-9]+([,\.][0-9]+)?"
+                    type="text"
                     value={rating}
                     onChange={this.handleChangeInputRating}
                 />
