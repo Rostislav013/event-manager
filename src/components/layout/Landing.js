@@ -4,48 +4,39 @@ import { Link } from "react-router-dom";
 class Landing extends Component {
   render() {
     return (
-      <div style={{ height: "75vh" }} className="container valign-wrapper">
-        <div className="row">
+      <div style={{ height: "60vh" }} >
+        
           <div className="col s12 center-align">
             <h4>
               Events list is going to be here soon...
             </h4>
-            <p className="flow-text grey-text text-darken-1">
-              some text here if neeeded
-            </p>
-            <br />
-            <div className="col s6">
-              <Link
-                to="/register"
-                style={{
-                  width: "140px",
-                  borderRadius: "3px",
-                  letterSpacing: "1.5px",
-                  backgroundColor: "yellow",
-                  padding: "15px"
-                }}
-                /*className="btn btn-large waves-effect waves-light hoverable blue accent-3"*/
-              >
-                Register
-              </Link>
-            </div>
-            <div className="col s6">
-              <Link
-                to="/login"
-                style={{
-                  width: "140px",
-                  borderRadius: "3px",
-                  letterSpacing: "1.5px",
-                  backgroundColor: "yellow",
-                  padding: "15px"
-                }}
-                /*className="btn btn-large btn-flat waves-effect white black-text"*/
-              >
-                Log In
-              </Link>
-            </div>
+            <Link to="/movies/list" className="nav-link"
+            style={{
+              width: "140px",
+              borderRadius: "3px",
+              letterSpacing: "1.5px",
+              backgroundColor: "yellow",
+              padding: "5px",
+              margin: "20px"
+            }}>
+              Event List
+            </Link>
+                       
+            <Link to="/movies/create" className="nav-link"
+            style={{
+              width: "140px",
+              borderRadius: "3px",
+              letterSpacing: "1.5px",
+              backgroundColor: "yellow",
+              padding: "5px",
+              margin: "20px"
+            }}>
+              Create Event
+            </Link>
+                       
+            
           </div>
-        </div>
+        
       </div>
     );
   }

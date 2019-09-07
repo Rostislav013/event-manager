@@ -13,9 +13,37 @@ class Navbar extends Component {
               }}
               className="col s5 brand-logo center black-text"
             >
-              <i className="material-icons">code</i>
-              MERN
+              Events
             </Link>
+            <div className="col s6">
+            <Link
+                to="/login"
+                style={{
+                  width: "140px",
+                  borderRadius: "3px",
+                  letterSpacing: "1.5px",
+                  backgroundColor: "yellow",
+                  padding: "15px",
+                  margin: "20px"
+                }}
+                /*className="btn btn-large btn-flat waves-effect white black-text"*/
+              >
+                Log In
+              </Link>
+              <Link
+                to="/register"
+                style={{
+                  width: "140px",
+                  borderRadius: "3px",
+                  letterSpacing: "1.5px",
+                  backgroundColor: "yellow",
+                  padding: "15px",
+                  margin: "20px"
+                }}
+                /*className="btn btn-large waves-effect waves-light hoverable blue accent-3"*/
+              >
+                Register
+              </Link></div>
           </div>
         </nav>
       </div>

@@ -1,9 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-
+const cors = require('cors')
 const passport = require("passport");
 const users = require("./routes/api/users");
+
+const movieRouter = require('./routes/movie-router'); //for events
 
 const app = express();
 
@@ -13,6 +15,7 @@ app.use(
         extended: false
     })
 );
+app.use(cors()); //for events
 app.use(bodyParser.json());
 
 //DB Config
@@ -39,5 +42,6 @@ mongoose
     // Routes
     app.use("/api/users", users);
 
+    app.use('/api', movieRouter); // for events
 
     app.listen(port, () => console.log(`Server up n running on port ${port}! That is sooo cool!`));
