@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import { Link } from "react-router-dom";
+
 class Dashboard extends Component {
   onLogoutClick = e => {
     e.preventDefault();
@@ -32,6 +34,17 @@ return (
             >
               Logout
             </button>
+            <Link to="/movies/create" className="nav-link"
+            style={{
+              width: "140px",
+              borderRadius: "3px",
+              letterSpacing: "1.5px",
+              backgroundColor: "yellow",
+              padding: "5px",
+              marginLeft: "200px"
+            }}>
+              Create Event
+            </Link>
           </div>
         </div>
       </div>

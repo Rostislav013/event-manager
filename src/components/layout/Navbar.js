@@ -19,11 +19,12 @@ class Navbar extends Component {
             <Link
                 to="/login"
                 style={{
+                  color: "black",
                   width: "140px",
                   borderRadius: "3px",
                   letterSpacing: "1.5px",
                   backgroundColor: "yellow",
-                  padding: "15px",
+                  padding: "5px",
                   margin: "20px"
                 }}
                 /*className="btn btn-large btn-flat waves-effect white black-text"*/
@@ -33,17 +34,33 @@ class Navbar extends Component {
               <Link
                 to="/register"
                 style={{
+                  color: "black",
                   width: "140px",
                   borderRadius: "3px",
                   letterSpacing: "1.5px",
                   backgroundColor: "yellow",
-                  padding: "15px",
+                  padding: "5px",
                   margin: "20px"
                 }}
                 /*className="btn btn-large waves-effect waves-light hoverable blue accent-3"*/
               >
                 Register
-              </Link></div>
+              </Link>
+              <Link to="/movies/list" className="nav-link"
+            style={{
+              color: "black",
+              width: "140px",
+              borderRadius: "3px",
+              letterSpacing: "1.5px",
+              backgroundColor: "yellow",
+              padding: "5px",
+              margin: "20px"
+            }}>
+              Event List
+            </Link>
+                       
+            
+              </div>
           </div>
         </nav>
       </div>

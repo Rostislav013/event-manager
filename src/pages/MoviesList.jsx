@@ -77,18 +77,18 @@ class MoviesList extends Component {
         console.log('TCL: MoviesList -> render -> movies', movies)
 
         const columns = [
-            {
+            /*{
                 Header: 'ID',
                 accessor: '_id',
                 filterable: true,
-            },
+            },*/
             {
                 Header: 'Name',
                 accessor: 'name',
                 filterable: true,
             },
             {
-                Header: 'Rating',
+                Header: 'Description',
                 accessor: 'rating',
                 filterable: true,
             },
@@ -97,7 +97,7 @@ class MoviesList extends Component {
                 accessor: 'time',
                 Cell: props => <span>{props.value.join(' / ')}</span>,
             },
-            {
+            /*{
                 Header: '',
                 accessor: '',
                 Cell: function(props) {
@@ -118,7 +118,7 @@ class MoviesList extends Component {
                         </span>
                     )
                 },
-            },
+            },*/
         ]
 
         let showTable = true
