@@ -1,8 +1,10 @@
-Event manager project.
+Event manager project. The project made on bases of https://blog.bitsrc.io/build-a-login-auth-app-with-mern-stack-part-1-c405048e3669 and https://medium.com/swlh/how-to-create-your-first-mern-mongodb-express-js-react-js-and-node-js-stack-7e8b20463e66 . Thank you, guys!
 Registration/log in of a user.
 User can create events. 
 All events are shown on Events page.
 User can add/edit only its own evetns.
+
+
 
 1. Create react app.
 2. Create server.
@@ -13,3 +15,5 @@ User can add/edit only its own evetns.
 7. Register 
 8. Log in
 9. Ability to create an event after authentication
+10. Ability to see event list after authentication
+11. Ability edit and delete events after authentication
