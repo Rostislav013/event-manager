@@ -112,7 +112,7 @@ class MoviesInsert extends Component {
                 />
 
                 <Button onClick={this.handleIncludeMovie}>Add Event</Button>
-                <CancelButton href={'/movies/list'}>Cancel</CancelButton>
+                <CancelButton href={'/dashboard'}>Cancel</CancelButton>
             </Wrapper>
         )
     }

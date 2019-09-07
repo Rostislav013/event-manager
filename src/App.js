@@ -11,7 +11,7 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
-import { MoviesList, MoviesInsert, MoviesUpdate } from './pages' // first mistake here
+import { MoviesList, MoviesInsert, MoviesUpdate, MoviesListAuth } from './pages' // first mistake here
 
 // Check for token to keep an user logged in
 if (localStorage.jwtToken) {
@@ -42,16 +42,16 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route path="/" exact component={MoviesList} />
-                
+            <Route path="/movies/list" exact component={MoviesList} />  
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <Route path="/movies/list" exact component={MoviesList} />
-                <Route path="/movies/create" exact component={MoviesInsert} />
-                <Route
+              <PrivateRoute path="/dashboard/movies/create" exact component={MoviesInsert} />
+              <PrivateRoute
                     path="/movies/update/:id"
                     exact
                     component={MoviesUpdate}
                 />
+              <PrivateRoute path="/movies/listAuth" exact component={MoviesListAuth} />
             </Switch>
           </div>
         </Router>
