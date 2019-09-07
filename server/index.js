@@ -22,7 +22,7 @@ const db = require('./config/keys').mongoURL;
 //Connect to MongoDB
 mongoose
     .connect(db, {useNewUrlParser: true})
-    .then(() => console.log('MongoDB connected'))
+    .then(() => console.log('MongoDB connected, relax, bro!'))
     .catch(err => console.log("Hei maan, I cannot connect", err));
 
     const port = process.env.PORT || 3001; //process.env.port is Heroku's port if app is deploed there
