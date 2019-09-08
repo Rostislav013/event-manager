@@ -7,6 +7,7 @@ import ReactTable from 'react-table'
 import api from '../../e-api/api'
 import { ReactTableDefaults } from 'react-table';
 import styled from 'styled-components'
+import { defaultCipherList } from "constants";
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -28,7 +29,8 @@ class Dashboard extends Component {
 componentDidMount = async () => {
     this.setState({ isLoading: true })
     const { user } = this.props.auth;
-    console.log(user.name);
+  
+    
     await api.getAllMovies().then(movies => {
         this.setState({
             movies: movies.data.data,
@@ -60,8 +62,8 @@ render() {
                 Header: 'User',
                 accessor: 'user',
                 filterable: true,
-                filtered:'Kar',
-                                
+                
+                         
             },
             {
                 Header: 'Name',
@@ -83,6 +85,7 @@ render() {
                 Header: '',
                 accessor: '',
                 Cell: function(props) {
+                    if(props.original.user===user.name)
                     return (
                         <span>
                             <DeleteMovie id={props.original._id} />
@@ -94,6 +97,7 @@ render() {
                 Header: '',
                 accessor: '',
                 Cell: function(props) {
+                    if(props.original.user===user.name)
                     return (
                         <span>
                             <UpdateMovie id={props.original._id} />
@@ -120,7 +124,7 @@ return (
             </h4>
             <button
               style={{
-                backgroundColor: "yellow",
+                backgroundColor: "white",
                 width: "150px",
                 borderRadius: "3px",
                 letterSpacing: "1.5px",
