@@ -70,7 +70,7 @@ class MoviesInsert extends Component {
         const payload = { name, rating, time: arrayTime }
 
         await api.insertMovie(payload).then(res => {
-            window.alert(`Movie inserted successfully`)
+            window.alert(`Event inserted successfully`)
             this.setState({
                 name: '',
                 rating: '',

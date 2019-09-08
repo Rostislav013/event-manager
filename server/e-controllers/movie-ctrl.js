@@ -6,7 +6,7 @@ createMovie = (req, res) => {
     if (!body) {
         return res.status(400).json({
             success: false,
-            error: 'You must provide a movie',
+            error: 'You must provide an event',
         })
     }
 
@@ -22,13 +22,13 @@ createMovie = (req, res) => {
             return res.status(201).json({
                 success: true,
                 id: movie._id,
-                message: 'Movie created!',
+                message: 'Event created!',
             })
         })
         .catch(error => {
             return res.status(400).json({
                 error,
-                message: 'Movie not created!',
+                message: 'Event not created!',
             })
         })
 }
@@ -47,7 +47,7 @@ updateMovie = async (req, res) => {
         if (err) {
             return res.status(404).json({
                 err,
-                message: 'Movie not found!',
+                message: 'Event not found!',
             })
         }
         movie.name = body.name
@@ -59,13 +59,13 @@ updateMovie = async (req, res) => {
                 return res.status(200).json({
                     success: true,
                     id: movie._id,
-                    message: 'Movie updated!',
+                    message: 'Event updated!',
                 })
             })
             .catch(error => {
                 return res.status(404).json({
                     error,
-                    message: 'Movie not updated!',
+                    message: 'Event not updated!',
                 })
             })
     })
@@ -80,7 +80,7 @@ deleteMovie = async (req, res) => {
         if (!movie) {
             return res
                 .status(404)
-                .json({ success: false, error: `Movie not found` })
+                .json({ success: false, error: `Event not found` })
         }
 
         return res.status(200).json({ success: true, data: movie })
@@ -96,7 +96,7 @@ getMovieById = async (req, res) => {
         if (!movie) {
             return res
                 .status(404)
-                .json({ success: false, error: `Movie not found` })
+                .json({ success: false, error: `Event not found` })
         }
         return res.status(200).json({ success: true, data: movie })
     }).catch(err => console.log(err))
@@ -110,7 +110,7 @@ getMovies = async (req, res) => {
         if (!movies.length) {
             return res
                 .status(404)
-                .json({ success: false, error: `Movie not found` })
+                .json({ success: false, error: `Event not found` })
         }
         return res.status(200).json({ success: true, data: movies })
     }).catch(err => console.log(err))

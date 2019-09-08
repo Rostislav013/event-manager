@@ -46,7 +46,7 @@ class Navbar extends Component {
               >
                 Register
               </Link>
-              <Link to="/movies/list" className="nav-link"
+              <Link to="/events/list" className="nav-link"
             style={{
               color: "black",
               width: "140px",

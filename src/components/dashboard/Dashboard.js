@@ -22,7 +22,7 @@ class Dashboard extends Component {
         columns: [],
         isLoading: false,
     }
-}
+};
 
 componentDidMount = async () => {
     this.setState({ isLoading: true })
@@ -33,16 +33,17 @@ componentDidMount = async () => {
             isLoading: false,
         })
     })
-}
+};
 
   //----------------
-
+  
 render() {
     const { user } = this.props.auth;
+    
     //-------------------------------
     const { movies, isLoading } = this.state
         console.log('TCL: MoviesList -> render -> movies', movies)
-
+        
         const columns = [
             {
                 Header: 'ID',
@@ -101,10 +102,7 @@ return (
           <div className="col s12 center-align">
             <h4>
               <b>Hey there,</b> {user.name.split(" ")[0]}
-              <p className="flow-text grey-text text-darken-1">
-                You are logged into a full-stack{" "}
-                <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
-              </p>
+              
             </h4>
             <button
               style={{
@@ -121,7 +119,7 @@ return (
               Logout
             </button>
 
-            <Link to="dashboard/movies/create" className="nav-link"
+            <Link to="dashboard/events/create" className="nav-link"
             style={{
               width: "140px",
               borderRadius: "3px",
@@ -181,11 +179,11 @@ class UpdateMovie extends Component {
     updateUser = event => {
         event.preventDefault()
 
-        window.location.href = `/movies/update/${this.props.id}`
+        window.location.href = `/events/update/${this.props.id}`
     }
 
     render() {
-        return <Update onClick={this.updateUser}>Update</Update>
+        return <Update onClick={this.updateUser}>Edit</Update>
     }
 }
 
@@ -195,7 +193,7 @@ class DeleteMovie extends Component {
 
         if (
             window.confirm(
-                `Do tou want to delete the movie ${this.props.id} permanently?`,
+                `Do tou want to delete the event ${this.props.id} permanently?`,
             )
         ) {
             api.deleteMovieById(this.props.id)

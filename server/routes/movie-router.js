@@ -4,10 +4,10 @@ const MovieCtrl = require('../e-controllers/movie-ctrl')
 
 const router = express.Router()
 
-router.post('/dashboard/movie', MovieCtrl.createMovie) // changed
-router.put('/movie/:id', MovieCtrl.updateMovie)
-router.delete('/movie/:id', MovieCtrl.deleteMovie)
-router.get('/movie/:id', MovieCtrl.getMovieById)
-router.get('/movies', MovieCtrl.getMovies)
+router.post('/dashboard/event', MovieCtrl.createMovie) // changed
+router.put('/event/:id', MovieCtrl.updateMovie)
+router.delete('/event/:id', MovieCtrl.deleteMovie)
+router.get('/event/:id', MovieCtrl.getMovieById)
+router.get('/events', MovieCtrl.getMovies)
 
 module.exports = router
