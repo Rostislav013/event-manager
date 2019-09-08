@@ -42,7 +42,7 @@ render() {
     
     //-------------------------------
     const { movies, isLoading } = this.state
-        console.log('TCL: MoviesList -> render -> movies', movies)
+        /*console.log('TCL: MoviesList -> render -> movies', movies) ---to test event list---*/
         
         const columns = [
             {
