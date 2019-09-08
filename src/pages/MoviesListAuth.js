@@ -24,7 +24,7 @@ class UpdateMovie extends Component {
     updateUser = event => {
         event.preventDefault()
 
-        window.location.href = `/movies/update/${this.props.id}`
+        window.location.href = `/events/update/${this.props.id}`
     }
 
     render() {

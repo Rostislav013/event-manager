@@ -71,7 +71,7 @@ class MoviesUpdate extends Component {
         const payload = { name, rating, time: arrayTime }
 
         await api.updateMovieById(id, payload).then(res => {
-            window.alert(`Movie updated successfully`)
+            window.alert(`Event updated successfully`)
             this.setState({
                 name: '',
                 rating: '',
@@ -119,7 +119,7 @@ class MoviesUpdate extends Component {
                 />
 
                 <Button onClick={this.handleUpdateMovie}>Update Movie</Button>
-                <CancelButton href={'/movies/list'}>Cancel</CancelButton>
+                <CancelButton href={'/events/list'}>Cancel</CancelButton>
             </Wrapper>
         )
     }

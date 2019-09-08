@@ -42,16 +42,16 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route path="/" exact component={MoviesList} />
-            <Route path="/movies/list" exact component={MoviesList} />  
+            <Route path="/events/list" exact component={MoviesList} />  
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <PrivateRoute path="/dashboard/movies/create" exact component={MoviesInsert} />
+              <PrivateRoute path="/dashboard/events/create" exact component={MoviesInsert} />
               <PrivateRoute
-                    path="/movies/update/:id"
+                    path="/events/update/:id"
                     exact
                     component={MoviesUpdate}
                 />
-              <PrivateRoute path="/movies/listAuth" exact component={MoviesListAuth} />
+              <PrivateRoute path="/events/listAuth" exact component={MoviesListAuth} />
             </Switch>
           </div>
         </Router>

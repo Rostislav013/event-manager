@@ -121,7 +121,7 @@ return (
               Logout
             </button>
 
-            <Link to="dashboard/movies/create" className="nav-link"
+            <Link to="dashboard/events/create" className="nav-link"
             style={{
               width: "140px",
               borderRadius: "3px",
@@ -181,11 +181,11 @@ class UpdateMovie extends Component {
     updateUser = event => {
         event.preventDefault()
 
-        window.location.href = `/movies/update/${this.props.id}`
+        window.location.href = `/events/update/${this.props.id}`
     }
 
     render() {
-        return <Update onClick={this.updateUser}>Update</Update>
+        return <Update onClick={this.updateUser}>Edit</Update>
     }
 }
 
