@@ -67,7 +67,8 @@ class MoviesInsert extends Component {
     }
    
     handleChangeInputUser = async event => {
-        const user = event.target.value
+        const user = event.target.value  // MUST MAKE IT USER:NAME
+        
         this.setState({ user })
     }
 
@@ -82,13 +83,14 @@ class MoviesInsert extends Component {
                 name: '',
                 rating: '',
                 time: '',
-                user: '',
+                //user: '',
             })
         })
     }
 
     render() {
         const { name, rating, time, user } = this.state
+        console.log(this.user);
         return (
             <Wrapper>
                 <Title>Create Event</Title>

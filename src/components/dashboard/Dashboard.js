@@ -137,7 +137,7 @@ return (
               Logout
             </button>
 
-            <Link to="dashboard/events/create" className="nav-link"
+            <Link to="dashboard/events/create" className="nav-link" 
             style={{
               width: "140px",
               borderRadius: "3px",
@@ -146,6 +146,7 @@ return (
               padding: "5px",
               marginLeft: "200px"
             }}>
+                
               Create Event
             </Link>
 
