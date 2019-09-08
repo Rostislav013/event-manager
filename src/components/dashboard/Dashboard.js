@@ -5,7 +5,7 @@ import { logoutUser } from "../../actions/authActions";
 import { Link } from "react-router-dom";
 import ReactTable from 'react-table'
 import api from '../../e-api/api'
-
+import { ReactTableDefaults } from 'react-table';
 import styled from 'styled-components'
 
 class Dashboard extends Component {
@@ -19,6 +19,7 @@ class Dashboard extends Component {
     super(props)
     this.state = {
         movies: [],
+        filterVal: '',
         columns: [],
         isLoading: false,
     }
@@ -26,29 +27,41 @@ class Dashboard extends Component {
 
 componentDidMount = async () => {
     this.setState({ isLoading: true })
-
+    const { user } = this.props.auth;
+    console.log(user.name);
     await api.getAllMovies().then(movies => {
         this.setState({
             movies: movies.data.data,
+            filterVal: user.name,
             isLoading: false,
         })
     })
+   
 };
 
   //----------------
   
 render() {
     const { user } = this.props.auth;
+    //console.log('TCL: MoviesList -> render -> movies', user);
     
     //-------------------------------
     const { movies, isLoading } = this.state
-        /*console.log('TCL: MoviesList -> render -> movies', movies) ---to test event list---*/
-        
+        //console.log('TCL: MoviesList -> render -> movies', movies) 
+        console.log( this.state.movies)
         const columns = [
             {
                 Header: 'ID',
                 accessor: '_id',
                 filterable: true,
+                
+            },
+            {
+                Header: 'User',
+                accessor: 'user',
+                filterable: true,
+                filtered:'Kar',
+                                
             },
             {
                 Header: 'Name',
@@ -65,6 +78,7 @@ render() {
                 accessor: 'time',
                 Cell: props => <span>{props.value.join(' / ')}</span>,
             },
+            
             {
                 Header: '',
                 accessor: '',
@@ -143,6 +157,7 @@ return (
                         defaultPageSize={10}
                         showPageSizeOptions={true}
                         minRows={0}
+                        
                     />
                 )}
             </Wrapper>
