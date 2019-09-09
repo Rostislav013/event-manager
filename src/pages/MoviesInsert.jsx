@@ -90,7 +90,7 @@ class MoviesInsert extends Component {
 
     render() {
         const { name, rating, time, user } = this.state
-        console.log(this.user);
+        //console.log(this.user);
         return (
             <Wrapper>
                 <Title>Create Event</Title>

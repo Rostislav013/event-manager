@@ -5,7 +5,7 @@ import { logoutUser } from "../../actions/authActions";
 import { Link } from "react-router-dom";
 import ReactTable from 'react-table'
 import api from '../../e-api/api'
-import { ReactTableDefaults } from 'react-table';
+//import { ReactTableDefaults } from 'react-table';
 import styled from 'styled-components'
 import { defaultCipherList } from "constants";
 
@@ -23,22 +23,43 @@ class Dashboard extends Component {
         filterVal: '',
         columns: [],
         isLoading: false,
+        newMovie: [],
     }
 };
 
 componentDidMount = async () => {
     this.setState({ isLoading: true })
     const { user } = this.props.auth;
-  
+    //console.log(user.name);
     
     await api.getAllMovies().then(movies => {
+        let her = movies.data.data
+        //console.log(her[0].user);
+        let newList = [];
+        for(let i = 0; i < her.length; i++){
+            if(her[i].user === user.name) {
+                newList.push(her[i]);
+               // console.log(newList);
+              
+            }
+            
+         
+         } //--------------------
+
         this.setState({
-            movies: movies.data.data,
+            movies: newList,
             filterVal: user.name,
             isLoading: false,
         })
+      
+       
+         
     })
-   
+    //console.log(this.state.movies);
+    
+       
+  
+      
 };
 
   //----------------
@@ -50,7 +71,8 @@ render() {
     //-------------------------------
     const { movies, isLoading } = this.state
         //console.log('TCL: MoviesList -> render -> movies', movies) 
-        console.log( this.state.movies)
+        //console.log( this.state.movies)
+        
         const columns = [
             {
                 Header: 'ID',
@@ -85,7 +107,7 @@ render() {
                 Header: '',
                 accessor: '',
                 Cell: function(props) {
-                    if(props.original.user===user.name)
+                    
                     return (
                         <span>
                             <DeleteMovie id={props.original._id} />
@@ -97,7 +119,7 @@ render() {
                 Header: '',
                 accessor: '',
                 Cell: function(props) {
-                    if(props.original.user===user.name)
+                    
                     return (
                         <span>
                             <UpdateMovie id={props.original._id} />
