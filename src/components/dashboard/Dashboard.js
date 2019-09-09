@@ -5,9 +5,9 @@ import { logoutUser } from "../../actions/authActions";
 import { Link } from "react-router-dom";
 import ReactTable from 'react-table'
 import api from '../../e-api/api'
-//import { ReactTableDefaults } from 'react-table';
+
 import styled from 'styled-components'
-import { defaultCipherList } from "constants";
+//import { defaultCipherList } from "constants";
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -83,7 +83,7 @@ render() {
             {
                 Header: 'User',
                 accessor: 'user',
-                filterable: true,
+                
                 
                          
             },
@@ -160,14 +160,14 @@ return (
             </button>
 
             <Link to="dashboard/events/create" className="nav-link" 
-            style={{
-              width: "140px",
-              borderRadius: "3px",
-              letterSpacing: "1.5px",
-              backgroundColor: "yellow",
-              padding: "5px",
-              marginLeft: "200px"
-            }}>
+                style={{
+                    width: "140px",
+                    borderRadius: "3px",
+                    letterSpacing: "1.5px",
+                    backgroundColor: "yellow",
+                    padding: "5px",
+                    marginLeft: "200px"
+                }}>
                 
               Create Event
             </Link>
@@ -178,6 +178,12 @@ return (
         <Wrapper>
                 {showTable && (
                     <ReactTable
+                    style={{
+                        width: "100%",
+                        borderRadius: "3px",
+                        letterSpacing: "1.5px",
+                       
+                    }}
                         data={movies}
                         columns={columns}
                         loading={isLoading}
