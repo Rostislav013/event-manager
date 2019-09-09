@@ -11,6 +11,7 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
+import Dashboard2 from "./components/dashboard/Dashboard2";
 import { MoviesList, MoviesInsert, MoviesUpdate, MoviesListAuth } from './pages' // first mistake here
 
 // Check for token to keep an user logged in
@@ -45,7 +46,8 @@ class App extends Component {
             <Route path="/events/list" exact component={MoviesList} />  
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <PrivateRoute path="/dashboard/events/create" exact component={MoviesInsert} />
+              {/*<PrivateRoute path="/dashboard/events/create" exact component={MoviesInsert} />*/}
+              <PrivateRoute path="/dashboard2/events/create" exact component={Dashboard2} />
               <PrivateRoute
                     path="/events/update/:id"
                     exact

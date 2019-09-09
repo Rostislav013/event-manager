@@ -1,0 +1,246 @@
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../../actions/authActions";
+
+
+import api from '../../e-api/api'
+
+import styled from 'styled-components'
+
+const Title = styled.h1.attrs({
+    className: 'h1',
+})``
+
+const Wrapper = styled.div.attrs({
+    className: 'form-group',
+})`
+    margin: 0 30px;
+`
+
+const Label = styled.label`
+    margin: 5px;
+`
+
+const InputText = styled.input.attrs({
+    className: 'form-control',
+})`
+    margin: 5px;
+`
+
+const Button = styled.button.attrs({
+    className: `btn btn-primary`,
+})`
+    margin: 15px 15px 15px 5px;
+`
+
+const CancelButton = styled.a.attrs({
+    className: `btn btn-danger`,
+})`
+    margin: 15px 15px 15px 5px;
+`
+
+
+class Dashboard2 extends Component {
+  onLogoutClick = e => {
+    e.preventDefault();
+    this.props.logoutUser();
+  };
+
+  
+
+componentDidMount = async () => {
+    
+    const { user } = this.props.auth; // dont delete
+    
+    
+    
+};
+//console.log(user.id);
+//-----INSERT------
+constructor(props) {
+    super(props)
+
+    this.state = {
+        name: '',
+        rating: '',
+        time: '',
+        userID: '',
+        
+    }
+};
+
+
+
+
+
+
+
+
+handleChangeInputName = async event => {
+    const name = event.target.value
+   
+    this.setState({ name })
+    const { user } = this.props.auth;
+    const userID = user.id
+      this.setState({ userID})
+    
+}
+
+handleChangeInputRating = async event => {
+    const rating = event.target.validity.valid
+        ? event.target.value
+        : this.state.rating
+
+    this.setState({ rating })
+}
+
+handleChangeInputTime = async event => {
+    const time = event.target.value
+    this.setState({ time})
+    
+}
+
+
+/*
+handleChangeInputUser = async event => {
+    const { user } = this.props.auth;
+  const userID = user.id //event.target.value  // MUST MAKE IT USER:NAME
+   
+  
+    this.setState({ userID })
+}*/
+
+handleIncludeMovie = async () => {
+    const { name, rating, time, userID } = this.state
+    const arrayTime = time.split('/')
+    const payload = { userID, name, rating, time: arrayTime }
+
+    await api.insertMovie(payload).then(res => {
+        window.alert(`Event inserted successfully`)
+        this.setState({
+            name: '',
+            rating: '',
+            time: '',
+            userID: '',
+        })
+    })
+}
+
+//_-----------------
+  
+
+
+
+render() {
+    const { user } = this.props.auth;
+    console.log(user.id);
+    const { userID, name, rating, time } = this.state;
+    
+return (
+      <div>
+        
+        <div className="row">
+          <div className="col s12 center-align">
+            <h4>
+              <b>Hey there,</b> {user.id.split(" ")[0]}
+            </h4>
+            <button
+              style={{
+                backgroundColor: "white",
+                width: "150px",
+                borderRadius: "3px",
+                letterSpacing: "1.5px",
+                marginTop: "1rem",
+                padding: "5px"
+              }}
+              onClick={this.onLogoutClick}
+              
+            >
+              Logout
+            </button>
+
+         
+
+
+
+
+          </div>
+        </div>
+        <Wrapper>
+                <Title>Create Event</Title>
+
+                <Label>Name: </Label>
+                <InputText
+                    type="text"
+                    value={name}
+                    onChange={this.handleChangeInputName}
+                    
+                />
+
+                <Label>Description: </Label>
+                <InputText
+                    type="text"
+                    /*step="0.1"
+                    lang="en-US"
+                    min="0"
+                    max="10"
+                    pattern="[0-9]+([,\.][0-9]+)?"*/
+                    value={rating}
+                    onChange={this.handleChangeInputRating}
+                />
+
+                <Label>Time: </Label>
+                <InputText
+                    type="text"
+                    value={time}
+                    onChange={this.handleChangeInputTime}
+                />
+                <Label>userID: </Label>
+                <InputText
+                    type="text"
+                    value={user.id}
+                    placeholder={user.id}
+                    onChange={this.handleChangeInputUser}
+                />
+
+                <Button onClick={this.handleIncludeMovie}>Add Event</Button>
+                <CancelButton href={'/dashboard'}>Cancel</CancelButton>
+            </Wrapper>
+      </div>
+    );
+  }
+}
+
+Dashboard2.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+
+
+
+  
+   
+
+
+
+
+
+
+
+
+
+
+
+export default 
+ 
+  connect(
+    mapStateToProps,
+    { logoutUser }
+  )(Dashboard2);
+
+// Dashboard;

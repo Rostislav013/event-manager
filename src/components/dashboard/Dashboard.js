@@ -7,7 +7,7 @@ import ReactTable from 'react-table'
 import api from '../../e-api/api'
 
 import styled from 'styled-components'
-//import { defaultCipherList } from "constants";
+
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -20,7 +20,6 @@ class Dashboard extends Component {
     super(props)
     this.state = {
         movies: [],
-        filterVal: '',
         columns: [],
         isLoading: false,
         newMovie: [],
@@ -29,51 +28,45 @@ class Dashboard extends Component {
 
 componentDidMount = async () => {
     this.setState({ isLoading: true })
-    const { user } = this.props.auth;
-    //console.log(user.name);
+    const { user } = this.props.auth; // dont delete
+    const data = this.props.auth;
+    console.log(typeof data);
+
+    let newAuth = [];
+    for (var key in data) {
+        newAuth.push(data[key]);
+        console.log(newAuth);
+      }
     
     await api.getAllMovies().then(movies => {
         let her = movies.data.data
         //console.log(her[0].user);
+
         let newList = [];
         for(let i = 0; i < her.length; i++){
-            if(her[i].user === user.name) {
+            if(her[i].userID === user.id) {
                 newList.push(her[i]);
-               // console.log(newList);
-              
+                console.log(newList);
             }
             
-         
-         } //--------------------
+        } 
 
         this.setState({
             movies: newList,
-            filterVal: user.name,
             isLoading: false,
         })
-      
-       
-         
     })
     //console.log(this.state.movies);
-    
-       
-  
-      
 };
 
-  //----------------
   
 render() {
     const { user } = this.props.auth;
-    //console.log('TCL: MoviesList -> render -> movies', user);
-    
-    //-------------------------------
+    //console.log(user.name);
     const { movies, isLoading } = this.state
         //console.log('TCL: MoviesList -> render -> movies', movies) 
-        //console.log( this.state.movies)
-        
-        const columns = [
+          
+       const columns = [
             {
                 Header: 'ID',
                 accessor: '_id',
@@ -81,11 +74,8 @@ render() {
                 
             },
             {
-                Header: 'User',
-                accessor: 'user',
-                
-                
-                         
+                Header: 'UserID',
+                accessor: 'userID',
             },
             {
                 Header: 'Name',
@@ -107,8 +97,7 @@ render() {
                 Header: '',
                 accessor: '',
                 Cell: function(props) {
-                    
-                    return (
+                   return (
                         <span>
                             <DeleteMovie id={props.original._id} />
                         </span>
@@ -119,8 +108,7 @@ render() {
                 Header: '',
                 accessor: '',
                 Cell: function(props) {
-                    
-                    return (
+                  return (
                         <span>
                             <UpdateMovie id={props.original._id} />
                         </span>
@@ -134,7 +122,6 @@ render() {
             showTable = false
         }
 
-    //---------------------
 return (
       <div>
         
@@ -142,7 +129,6 @@ return (
           <div className="col s12 center-align">
             <h4>
               <b>Hey there,</b> {user.name.split(" ")[0]}
-              
             </h4>
             <button
               style={{
@@ -158,8 +144,20 @@ return (
             >
               Logout
             </button>
-
+{/*
             <Link to="dashboard/events/create" className="nav-link" 
+                style={{
+                    width: "140px",
+                    borderRadius: "3px",
+                    letterSpacing: "1.5px",
+                    backgroundColor: "yellow",
+                    padding: "5px",
+                    marginLeft: "200px"
+                }}>
+                
+              Create Event
+            </Link> */}
+          <Link to={`dashboard2/events/create` } className="nav-link" 
                 style={{
                     width: "140px",
                     borderRadius: "3px",
@@ -173,6 +171,8 @@ return (
             </Link>
 
 
+
+
           </div>
         </div>
         <Wrapper>
@@ -181,8 +181,7 @@ return (
                     style={{
                         width: "100%",
                         borderRadius: "3px",
-                        letterSpacing: "1.5px",
-                       
+                        letterSpacing: "1.5px",  
                     }}
                         data={movies}
                         columns={columns}
@@ -190,7 +189,6 @@ return (
                         defaultPageSize={10}
                         showPageSizeOptions={true}
                         minRows={0}
-                        
                     />
                 )}
             </Wrapper>
@@ -274,4 +272,4 @@ export default
     { logoutUser }
   )(Dashboard);
 
-// MoviesList;
+// Dashboard;

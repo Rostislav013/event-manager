@@ -6,7 +6,7 @@ const Movie = new Schema(
         name: {type: String, required: true},
         time: {type: [String], required: true},
         rating: {type:String, required: true},
-        user: {type:String, required: true},
+        userID: {type:String, required: true},
     },
     {timestamps: true}
 )

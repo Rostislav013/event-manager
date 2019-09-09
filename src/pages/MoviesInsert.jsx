@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
 import api from '../e-api/api'
-
 import styled from 'styled-components'
+
+import { logoutUser } from "../actions/authActions";
+
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
+
+
 
 const Title = styled.h1.attrs({
     className: 'h1',
@@ -36,6 +43,11 @@ const CancelButton = styled.a.attrs({
 `
 
 class MoviesInsert extends Component {
+    
+     
+
+
+
     constructor(props) {
         super(props)
 
@@ -43,16 +55,23 @@ class MoviesInsert extends Component {
             name: '',
             rating: '',
             time: '',
-            user: '',
+            userID: '',
             
         }
-    }
+    };
+
+
+  
+
+
+
+    
 
     handleChangeInputName = async event => {
         const name = event.target.value
         this.setState({ name })
     }
-
+   
     handleChangeInputRating = async event => {
         const rating = event.target.validity.valid
             ? event.target.value
@@ -66,16 +85,20 @@ class MoviesInsert extends Component {
         this.setState({ time })
     }
    
+    
+
     handleChangeInputUser = async event => {
-        const user = event.target.value  // MUST MAKE IT USER:NAME
         
-        this.setState({ user })
+      const userID = event.target.value  // MUST MAKE IT USER:NAME
+       //const userK = this.props.auth;
+      // console.log( user);
+        this.setState({ userID })
     }
 
     handleIncludeMovie = async () => {
-        const { name, rating, time, user } = this.state
+        const { name, rating, time, userID } = this.state
         const arrayTime = time.split('/')
-        const payload = { user, name, rating, time: arrayTime }
+        const payload = { userID, name, rating, time: arrayTime }
 
         await api.insertMovie(payload).then(res => {
             window.alert(`Event inserted successfully`)
@@ -83,15 +106,19 @@ class MoviesInsert extends Component {
                 name: '',
                 rating: '',
                 time: '',
-                //user: '',
+                userID: '',
             })
         })
     }
 
     render() {
-        const { name, rating, time, user } = this.state
+        
+        
+
+        const { name, rating, time, userID } = this.state
         //console.log(this.user);
         return (
+            
             <Wrapper>
                 <Title>Create Event</Title>
 
@@ -120,10 +147,10 @@ class MoviesInsert extends Component {
                     value={time}
                     onChange={this.handleChangeInputTime}
                 />
-                <Label>User: </Label>
+                <Label>userID: </Label>
                 <InputText
                     type="text"
-                    value={user}
+                    value={userID}
                     onChange={this.handleChangeInputUser}
                 />
 
@@ -133,5 +160,8 @@ class MoviesInsert extends Component {
         )
     }
 }
+
+
+  
 
 export default MoviesInsert

@@ -53,7 +53,7 @@ updateMovie = async (req, res) => {
         movie.name = body.name
         movie.time = body.time
         movie.rating = body.rating
-        movie.user = body.user //added
+        movie.userID = body.userID //added
         movie
             .save()
             .then(() => {
