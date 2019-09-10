@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
-import api from '../e-api/api'
-
+import api from '../../e-api/api'
 import styled from 'styled-components'
+
+
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../../actions/authActions";
 
 const Title = styled.h1.attrs({
     className: 'h1',
@@ -35,47 +39,67 @@ const CancelButton = styled.a.attrs({
     margin: 15px 15px 15px 5px;
 `
 
-class MoviesUpdate extends Component {
+class EventUpdate extends Component {
+    onLogoutClick = e => {
+        e.preventDefault();
+        this.props.logoutUser();
+      };
+    
+      
+    
+    componentDidMount = async () => {
+        const { user } = this.props.auth; // dont delete
+            
+        
+    };
+
     constructor(props) {
         super(props)
 
         this.state = {
             id: this.props.match.params.id,
             name: '',
-            rating: '',
+            description: '',
             time: '',
+            userID: '',
         }
     }
 
     handleChangeInputName = async event => {
         const name = event.target.value
         this.setState({ name })
+        
+       
+    
     }
 
-    handleChangeInputRating = async event => {
-        const rating = event.target.validity.valid
+    handleChangeInputDescription = async event => {
+        const description = event.target.validity.valid
             ? event.target.value
-            : this.state.rating
+            : this.state.description
 
-        this.setState({ rating })
+        this.setState({ description })
+        
     }
 
     handleChangeInputTime = async event => {
         const time = event.target.value
         this.setState({ time })
+       
     }
 
     handleUpdateMovie = async () => {
-        const { id, name, rating, time } = this.state
+        const { id, name, description, time, userID } = this.state
         const arrayTime = time.split('/')
-        const payload = { name, rating, time: arrayTime }
+        const payload = { userID, name, description, time: arrayTime }
 
         await api.updateMovieById(id, payload).then(res => {
             window.alert(`Event updated successfully`)
             this.setState({
                 name: '',
-                rating: '',
+                description: '',
                 time: '',
+                userID: '',
             })
         })
     }
@@ -86,13 +110,16 @@ class MoviesUpdate extends Component {
 
         this.setState({
             name: movie.data.data.name,
-            rating: movie.data.data.rating,
+            description: movie.data.data.description,
             time: movie.data.data.time.join('/'),
+            userID: movie.data.data.userID,
         })
     }
 
     render() {
-        const { name, rating, time } = this.state
+        const { user } = this.props.auth; // dont delete
+        console.log(user.name);
+        const { name, description, time, userID } = this.state
         return (
             <Wrapper>
                 <Title>Create Event</Title>
@@ -107,11 +134,11 @@ class MoviesUpdate extends Component {
                 <Label>Description: </Label>
                 <InputText
                     type="text"
-                    value={rating}
-                    onChange={this.handleChangeInputRating}
+                    value={description}
+                    onChange={this.handleChangeInputDescription}
                 />
 
-                <Label>Time: </Label>
+                <Label>Date & Time: </Label>
                 <InputText
                     type="text"
                     value={time}
@@ -125,4 +152,20 @@ class MoviesUpdate extends Component {
     }
 }
 
-export default MoviesUpdate
+
+EventUpdate.propTypes = {
+    logoutUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+  };
+  const mapStateToProps = state => ({
+    auth: state.auth
+  });
+  
+  
+  
+  export default 
+   
+    connect(
+      mapStateToProps,
+      { logoutUser }
+    )(EventUpdate);

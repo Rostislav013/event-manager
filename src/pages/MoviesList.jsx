@@ -9,7 +9,7 @@ import 'react-table/react-table.css'
 const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
 `
-
+/*
 const Update = styled.div`
     color: #ef9b0f;
     cursor: pointer;
@@ -18,8 +18,8 @@ const Update = styled.div`
 const Delete = styled.div`
     color: #ff0000;
     cursor: pointer;
-`
-
+`*/
+/*
 class UpdateMovie extends Component {
     updateUser = event => {
         event.preventDefault()
@@ -49,7 +49,7 @@ class DeleteMovie extends Component {
     render() {
         return <Delete onClick={this.deleteUser}>Delete</Delete>
     }
-}
+}*/
 
 class MoviesList extends Component {
     constructor(props) {
@@ -74,7 +74,7 @@ class MoviesList extends Component {
 
     render() {
         const { movies, isLoading } = this.state
-        console.log('TCL: MoviesList -> render -> movies', movies)
+        /*console.log('TCL: MoviesList -> render -> movies', movies) ---test event list--- */
 
         const columns = [
             /*{
@@ -89,11 +89,11 @@ class MoviesList extends Component {
             },
             {
                 Header: 'Description',
-                accessor: 'rating',
+                accessor: 'description',
                 filterable: true,
             },
             {
-                Header: 'Time',
+                Header: 'Date & Time',
                 accessor: 'time',
                 Cell: props => <span>{props.value.join(' / ')}</span>,
             },

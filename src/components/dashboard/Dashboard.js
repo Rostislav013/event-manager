@@ -8,6 +8,7 @@ import api from '../../e-api/api'
 
 import styled from 'styled-components'
 
+
 class Dashboard extends Component {
   onLogoutClick = e => {
     e.preventDefault();
@@ -21,34 +22,61 @@ class Dashboard extends Component {
         movies: [],
         columns: [],
         isLoading: false,
+        newMovie: [],
     }
 };
 
 componentDidMount = async () => {
     this.setState({ isLoading: true })
-
+    const { user } = this.props.auth; // dont delete
+    
+   /*----checking whats user has------  
+        const data = this.props.auth;
+        console.log(typeof data);
+        let newAuth = [];
+        for (var key in data) {
+        newAuth.push(data[key]);
+        console.log(newAuth);
+      }*/
+    
     await api.getAllMovies().then(movies => {
+        let her = movies.data.data
+        //console.log(her[0].user);
+
+        let newList = [];
+        for(let i = 0; i < her.length; i++){
+            if(her[i].userID === user.id) {
+                newList.push(her[i]);
+                //console.log(newList);
+            }
+            
+        } 
+
         this.setState({
-            movies: movies.data.data,
+            movies: newList,
             isLoading: false,
         })
     })
+    //console.log(this.state.movies);
 };
 
-  //----------------
   
 render() {
     const { user } = this.props.auth;
-    
-    //-------------------------------
+    //console.log(user.name);
     const { movies, isLoading } = this.state
-        console.log('TCL: MoviesList -> render -> movies', movies)
-        
-        const columns = [
+        //console.log('TCL: MoviesList -> render -> movies', movies) 
+          
+       const columns = [
             {
                 Header: 'ID',
                 accessor: '_id',
                 filterable: true,
+                
+            },
+            {
+                Header: 'UserID',
+                accessor: 'userID',
             },
             {
                 Header: 'Name',
@@ -57,19 +85,20 @@ render() {
             },
             {
                 Header: 'Description',
-                accessor: 'rating',
+                accessor: 'description',
                 filterable: true,
             },
             {
-                Header: 'Time',
+                Header: 'Date & Time',
                 accessor: 'time',
                 Cell: props => <span>{props.value.join(' / ')}</span>,
             },
+            
             {
                 Header: '',
                 accessor: '',
                 Cell: function(props) {
-                    return (
+                   return (
                         <span>
                             <DeleteMovie id={props.original._id} />
                         </span>
@@ -80,7 +109,7 @@ render() {
                 Header: '',
                 accessor: '',
                 Cell: function(props) {
-                    return (
+                  return (
                         <span>
                             <UpdateMovie id={props.original._id} />
                         </span>
@@ -94,7 +123,6 @@ render() {
             showTable = false
         }
 
-    //---------------------
 return (
       <div>
         
@@ -102,11 +130,10 @@ return (
           <div className="col s12 center-align">
             <h4>
               <b>Hey there,</b> {user.name.split(" ")[0]}
-              
             </h4>
             <button
               style={{
-                backgroundColor: "yellow",
+                backgroundColor: "white",
                 width: "150px",
                 borderRadius: "3px",
                 letterSpacing: "1.5px",
@@ -119,24 +146,29 @@ return (
               Logout
             </button>
 
-            <Link to="dashboard/events/create" className="nav-link"
-            style={{
-              width: "140px",
-              borderRadius: "3px",
-              letterSpacing: "1.5px",
-              backgroundColor: "yellow",
-              padding: "5px",
-              marginLeft: "200px"
-            }}>
+          <Link to={`dashboard/events/create` } className="nav-link" 
+                style={{
+                    width: "140px",
+                    borderRadius: "3px",
+                    letterSpacing: "1.5px",
+                    backgroundColor: "yellow",
+                    padding: "5px",
+                    marginLeft: "200px"
+                }}>
+                
               Create Event
             </Link>
-
 
           </div>
         </div>
         <Wrapper>
                 {showTable && (
                     <ReactTable
+                    style={{
+                        width: "100%",
+                        borderRadius: "3px",
+                        letterSpacing: "1.5px",  
+                    }}
                         data={movies}
                         columns={columns}
                         loading={isLoading}
@@ -226,4 +258,4 @@ export default
     { logoutUser }
   )(Dashboard);
 
-// MoviesList;
+// Dashboard;
