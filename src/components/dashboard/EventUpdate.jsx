@@ -39,7 +39,7 @@ const CancelButton = styled.a.attrs({
     margin: 15px 15px 15px 5px;
 `
 
-class MoviesUpdate extends Component {
+class EventUpdate extends Component {
     onLogoutClick = e => {
         e.preventDefault();
         this.props.logoutUser();
@@ -152,8 +152,8 @@ class MoviesUpdate extends Component {
     }
 }
 
-//export default MoviesUpdate
-MoviesUpdate.propTypes = {
+
+EventUpdate.propTypes = {
     logoutUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
   };
@@ -168,4 +168,4 @@ MoviesUpdate.propTypes = {
     connect(
       mapStateToProps,
       { logoutUser }
-    )(MoviesUpdate);
+    )(EventUpdate);

@@ -11,28 +11,23 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
-import Dashboard2 from "./components/dashboard/Dashboard2";
-import MoviesUpdate from "./components/dashboard/MoviesUpdate";
-import { MoviesList, MoviesInsert, MoviesListAuth } from './pages' // first mistake here
+import EventInsert from "./components/dashboard/EventInsert";
+import EventUpdate from "./components/dashboard/EventUpdate";
+import { MoviesList, MoviesListAuth } from './pages' // first mistake here
 
 // Check for token to keep an user logged in
 if (localStorage.jwtToken) {
-  // Set auth token header auth
-  const token = localStorage.jwtToken;
+  const token = localStorage.jwtToken;  // Set auth token header auth
   setAuthToken(token);
-  // Decode token and get user info and exp
-  const decoded = jwt_decode(token);
-  // Set user and isAuthenticated
-  store.dispatch(setCurrentUser(decoded));
-// Check for expired token
-  const currentTime = Date.now() / 1000; // to get in milliseconds
+  const decoded = jwt_decode(token);  // Decode token and get user info and exp
+  store.dispatch(setCurrentUser(decoded));  // Set user and isAuthenticated
+  const currentTime = Date.now() / 1000; // Check for expired token,  to get in milliseconds
   if (decoded.exp < currentTime) {
-    // Logout user
-    store.dispatch(logoutUser());
-    // Redirect to login
-    window.location.href = "./login";
+      store.dispatch(logoutUser()); // Logout user
+      window.location.href = "./login"; // Redirect to login
   }
 }
+
 class App extends Component {
   render() {
     return (
@@ -47,12 +42,11 @@ class App extends Component {
             <Route path="/events/list" exact component={MoviesList} />  
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              {/*<PrivateRoute path="/dashboard/events/create" exact component={MoviesInsert} />*/}
-              <PrivateRoute path="/dashboard2/events/create" exact component={Dashboard2} />
+              <PrivateRoute path="/dashboard/events/create" exact component={EventInsert} />
               <PrivateRoute
                     path="/events/update/:id"
                     exact
-                    component={MoviesUpdate}
+                    component={EventUpdate}
                 />
               <PrivateRoute path="/events/listAuth" exact component={MoviesListAuth} />
             </Switch>

@@ -41,7 +41,7 @@ const CancelButton = styled.a.attrs({
 `
 
 
-class Dashboard2 extends Component {
+class EventInsert extends Component {
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
@@ -69,8 +69,6 @@ constructor(props) {
         
     }
 };
-
-
 
 
 
@@ -124,7 +122,6 @@ handleIncludeMovie = async () => {
     })
 }
 
-
 render() {
     const { user } = this.props.auth;
     //console.log(user.id);
@@ -152,11 +149,6 @@ return (
             >
               Logout
             </button>
-
-         
-
-
-
 
           </div>
         </div>
@@ -189,14 +181,6 @@ return (
                     value={time}
                     onChange={this.handleChangeInputTime}
                 />
-                {/*<Label>userID: </Label>
-                <InputText
-                    type="text"
-                    value={user.id}
-                    placeholder={user.id}
-                    onChange={this.handleChangeInputUser}
-                />*/}
-
                 <Button onClick={this.handleIncludeMovie}>Add Event</Button>
                 <CancelButton href={'/dashboard'}>Cancel</CancelButton>
             </Wrapper>
@@ -205,7 +189,7 @@ return (
   }
 }
 
-Dashboard2.propTypes = {
+EventInsert.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
@@ -234,6 +218,6 @@ export default
   connect(
     mapStateToProps,
     { logoutUser }
-  )(Dashboard2);
+  )(EventInsert);
 
 // Dashboard;

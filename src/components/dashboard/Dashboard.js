@@ -145,20 +145,8 @@ return (
             >
               Logout
             </button>
-{/*
-            <Link to="dashboard/events/create" className="nav-link" 
-                style={{
-                    width: "140px",
-                    borderRadius: "3px",
-                    letterSpacing: "1.5px",
-                    backgroundColor: "yellow",
-                    padding: "5px",
-                    marginLeft: "200px"
-                }}>
-                
-              Create Event
-            </Link> */}
-          <Link to={`dashboard2/events/create` } className="nav-link" 
+
+          <Link to={`dashboard/events/create` } className="nav-link" 
                 style={{
                     width: "140px",
                     borderRadius: "3px",
@@ -170,9 +158,6 @@ return (
                 
               Create Event
             </Link>
-
-
-
 
           </div>
         </div>
