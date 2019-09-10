@@ -53,7 +53,7 @@ class MoviesInsert extends Component {
 
         this.state = {
             name: '',
-            rating: '',
+            description: '',
             time: '',
             userID: '',
             
@@ -72,12 +72,12 @@ class MoviesInsert extends Component {
         this.setState({ name })
     }
    
-    handleChangeInputRating = async event => {
-        const rating = event.target.validity.valid
+    handleChangeInputDescription = async event => {
+        const description = event.target.validity.valid
             ? event.target.value
-            : this.state.rating
+            : this.state.description
 
-        this.setState({ rating })
+        this.setState({ description })
     }
 
     handleChangeInputTime = async event => {
@@ -96,15 +96,15 @@ class MoviesInsert extends Component {
     }
 
     handleIncludeMovie = async () => {
-        const { name, rating, time, userID } = this.state
+        const { name, description, time, userID } = this.state
         const arrayTime = time.split('/')
-        const payload = { userID, name, rating, time: arrayTime }
+        const payload = { userID, name, description, time: arrayTime }
 
         await api.insertMovie(payload).then(res => {
             window.alert(`Event inserted successfully`)
             this.setState({
                 name: '',
-                rating: '',
+                description: '',
                 time: '',
                 userID: '',
             })
@@ -115,7 +115,7 @@ class MoviesInsert extends Component {
         
         
 
-        const { name, rating, time, userID } = this.state
+        const { name, description, time, userID } = this.state
         //console.log(this.user);
         return (
             
@@ -137,8 +137,8 @@ class MoviesInsert extends Component {
                     min="0"
                     max="10"
                     pattern="[0-9]+([,\.][0-9]+)?"*/
-                    value={rating}
-                    onChange={this.handleChangeInputRating}
+                    value={description}
+                    onChange={this.handleChangeInputDescription}
                 />
 
                 <Label>Time: </Label>

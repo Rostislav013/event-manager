@@ -29,14 +29,15 @@ class Dashboard extends Component {
 componentDidMount = async () => {
     this.setState({ isLoading: true })
     const { user } = this.props.auth; // dont delete
-    const data = this.props.auth;
-    console.log(typeof data);
-
-    let newAuth = [];
-    for (var key in data) {
+    
+   /*----checking whats user has------  
+        const data = this.props.auth;
+        console.log(typeof data);
+        let newAuth = [];
+        for (var key in data) {
         newAuth.push(data[key]);
         console.log(newAuth);
-      }
+      }*/
     
     await api.getAllMovies().then(movies => {
         let her = movies.data.data
@@ -46,7 +47,7 @@ componentDidMount = async () => {
         for(let i = 0; i < her.length; i++){
             if(her[i].userID === user.id) {
                 newList.push(her[i]);
-                console.log(newList);
+                //console.log(newList);
             }
             
         } 
@@ -84,11 +85,11 @@ render() {
             },
             {
                 Header: 'Description',
-                accessor: 'rating',
+                accessor: 'description',
                 filterable: true,
             },
             {
-                Header: 'Time',
+                Header: 'Date & Time',
                 accessor: 'time',
                 Cell: props => <span>{props.value.join(' / ')}</span>,
             },

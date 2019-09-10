@@ -12,7 +12,8 @@ import Login from "./components/auth/Login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import Dashboard2 from "./components/dashboard/Dashboard2";
-import { MoviesList, MoviesInsert, MoviesUpdate, MoviesListAuth } from './pages' // first mistake here
+import MoviesUpdate from "./components/dashboard/MoviesUpdate";
+import { MoviesList, MoviesInsert, MoviesListAuth } from './pages' // first mistake here
 
 // Check for token to keep an user logged in
 if (localStorage.jwtToken) {

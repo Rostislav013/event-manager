@@ -52,26 +52,23 @@ class Dashboard2 extends Component {
 componentDidMount = async () => {
     
     const { user } = this.props.auth; // dont delete
-    
+    // dont delete
+        console.log(user);
     
     
 };
-//console.log(user.id);
-//-----INSERT------
+
 constructor(props) {
     super(props)
 
     this.state = {
         name: '',
-        rating: '',
+        description: '',
         time: '',
         userID: '',
         
     }
 };
-
-
-
 
 
 
@@ -87,12 +84,12 @@ handleChangeInputName = async event => {
     
 }
 
-handleChangeInputRating = async event => {
-    const rating = event.target.validity.valid
+handleChangeInputDescription = async event => {
+    const description = event.target.validity.valid
         ? event.target.value
-        : this.state.rating
+        : this.state.description
 
-    this.setState({ rating })
+    this.setState({ description })
 }
 
 handleChangeInputTime = async event => {
@@ -112,30 +109,26 @@ handleChangeInputUser = async event => {
 }*/
 
 handleIncludeMovie = async () => {
-    const { name, rating, time, userID } = this.state
+    const { name, description, time, userID } = this.state
     const arrayTime = time.split('/')
-    const payload = { userID, name, rating, time: arrayTime }
+    const payload = { userID, name, description, time: arrayTime }
 
     await api.insertMovie(payload).then(res => {
         window.alert(`Event inserted successfully`)
         this.setState({
             name: '',
-            rating: '',
+            description: '',
             time: '',
             userID: '',
         })
     })
 }
 
-//_-----------------
-  
-
-
 
 render() {
     const { user } = this.props.auth;
-    console.log(user.id);
-    const { userID, name, rating, time } = this.state;
+    //console.log(user.id);
+    const { userID, name, description, time } = this.state;
     
 return (
       <div>
@@ -143,7 +136,7 @@ return (
         <div className="row">
           <div className="col s12 center-align">
             <h4>
-              <b>Hey there,</b> {user.id.split(" ")[0]}
+              <b>Hey there,</b> {user.name.split(" ")[0]}
             </h4>
             <button
               style={{
@@ -186,23 +179,23 @@ return (
                     min="0"
                     max="10"
                     pattern="[0-9]+([,\.][0-9]+)?"*/
-                    value={rating}
-                    onChange={this.handleChangeInputRating}
+                    value={description}
+                    onChange={this.handleChangeInputDescription}
                 />
 
-                <Label>Time: </Label>
+                <Label>Date & Time: </Label>
                 <InputText
                     type="text"
                     value={time}
                     onChange={this.handleChangeInputTime}
                 />
-                <Label>userID: </Label>
+                {/*<Label>userID: </Label>
                 <InputText
                     type="text"
                     value={user.id}
                     placeholder={user.id}
                     onChange={this.handleChangeInputUser}
-                />
+                />*/}
 
                 <Button onClick={this.handleIncludeMovie}>Add Event</Button>
                 <CancelButton href={'/dashboard'}>Cancel</CancelButton>
