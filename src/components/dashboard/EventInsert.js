@@ -51,9 +51,8 @@ class EventInsert extends Component {
 
 componentDidMount = async () => {
     
-    const { user } = this.props.auth; // dont delete
-    // dont delete
-        console.log(user);
+    const { user } = this.props.auth; 
+    //console.log(user);
     
     
 };
