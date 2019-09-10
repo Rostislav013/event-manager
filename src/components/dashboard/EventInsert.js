@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
-
-
 import api from '../../e-api/api'
-
 import styled from 'styled-components'
 
 const Title = styled.h1.attrs({
@@ -40,21 +37,16 @@ const CancelButton = styled.a.attrs({
     margin: 15px 15px 15px 5px;
 `
 
-
 class EventInsert extends Component {
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
   };
 
-  
-
 componentDidMount = async () => {
     
     const { user } = this.props.auth; 
     //console.log(user);
-    
-    
 };
 
 constructor(props) {
