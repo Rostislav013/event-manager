@@ -97,12 +97,12 @@ handleChangeInputUser = async event => {
     this.setState({ userID })
 }*/
 
-handleIncludeMovie = async () => {
+handleIncludeEvent = async () => {
     const { name, description, time, userID } = this.state
     const arrayTime = time.split('/')
     const payload = { userID, name, description, time: arrayTime }
 
-    await api.insertMovie(payload).then(res => {
+    await api.insertEvent(payload).then(res => {
         window.alert(`Event inserted successfully`)
         this.setState({
             name: '',
@@ -172,7 +172,7 @@ return (
                     value={time}
                     onChange={this.handleChangeInputTime}
                 />
-                <Button onClick={this.handleIncludeMovie}>Add Event</Button>
+                <Button onClick={this.handleIncludeEvent}>Add Event</Button>
                 <CancelButton href={'/dashboard'}>Cancel</CancelButton>
             </Wrapper>
       </div>

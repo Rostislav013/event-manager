@@ -5,7 +5,7 @@ const cors = require('cors')
 const passport = require("passport");
 const users = require("./routes/api/users");
 
-const movieRouter = require('./routes/movie-router'); //for events
+const eventRouter = require('./routes/event-router'); //for events
 
 const app = express();
 
@@ -42,6 +42,6 @@ mongoose
     // Routes
     app.use("/api/users", users);
 
-    app.use('/api', movieRouter); // for events
+    app.use('/api', eventRouter); // for events
 
     app.listen(port, () => console.log(`Server up n running on port ${port}! That is sooo cool!`));

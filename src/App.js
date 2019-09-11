@@ -13,7 +13,7 @@ import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import EventInsert from "./components/dashboard/EventInsert";
 import EventUpdate from "./components/dashboard/EventUpdate";
-import { MoviesList, MoviesListAuth } from './pages' // first mistake here
+import { EventsList, EventsListAuth } from './pages' // first mistake here
 
 // Check for token to keep an user logged in
 if (localStorage.jwtToken) {
@@ -36,10 +36,10 @@ class App extends Component {
           <div className="App">
             <Navbar />
             <Route exact path="/" component={Landing} />
-            <Route exact path="/" component={MoviesList} />
+            <Route exact path="/" component={EventsList} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
-            <Route path="/events/list" exact component={MoviesList} />  
+            <Route path="/events/list" exact component={EventsList} />  
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <PrivateRoute path="/dashboard/events/create" exact component={EventInsert} />
@@ -48,7 +48,7 @@ class App extends Component {
                     exact
                     component={EventUpdate}
                 />
-              <PrivateRoute path="/events/listAuth" exact component={MoviesListAuth} />
+              <PrivateRoute path="/events/listAuth" exact component={EventsListAuth} />
             </Switch>
           </div>
         </Router>
