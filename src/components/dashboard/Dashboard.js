@@ -3,11 +3,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import { Link } from "react-router-dom";
-import ReactTable from 'react-table'
-import api from '../../e-api/api'
-
-import styled from 'styled-components'
-
+import ReactTable from 'react-table';
+import api from '../../e-api/api';
+import styled from 'styled-components';
+import react from '../layout/react.png';
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -178,6 +177,9 @@ return (
                     />
                 )}
             </Wrapper>
+            <div className="madeInReact">
+                <img src={react} alt="Made in React" />
+            </div>
       </div>
     );
   }
