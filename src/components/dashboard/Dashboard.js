@@ -19,10 +19,10 @@ class Dashboard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-        movies: [],
+        events: [],
         columns: [],
         isLoading: false,
-        newMovie: [],
+        newEvent: [],
     }
 };
 
@@ -39,8 +39,8 @@ componentDidMount = async () => {
         console.log(newAuth);
       }*/
     
-    await api.getAllMovies().then(movies => {
-        let her = movies.data.data
+    await api.getAllEvents().then(events => {
+        let her = events.data.data
         //console.log(her[0].user);
 
         let newList = [];
@@ -53,19 +53,19 @@ componentDidMount = async () => {
         } 
 
         this.setState({
-            movies: newList,
+            events: newList,
             isLoading: false,
         })
     })
-    //console.log(this.state.movies);
+    //console.log(this.state.events);
 };
 
   
 render() {
     const { user } = this.props.auth;
     //console.log(user.name);
-    const { movies, isLoading } = this.state
-        //console.log('TCL: MoviesList -> render -> movies', movies) 
+    const { events, isLoading } = this.state
+        //console.log('TCL: MoviesList -> render -> events', events) 
           
        const columns = [
             {
@@ -100,7 +100,7 @@ render() {
                 Cell: function(props) {
                    return (
                         <span>
-                            <DeleteMovie id={props.original._id} />
+                            <DeleteEvent id={props.original._id} />
                         </span>
                     )
                 },
@@ -111,7 +111,7 @@ render() {
                 Cell: function(props) {
                   return (
                         <span>
-                            <UpdateMovie id={props.original._id} />
+                            <UpdateEvent id={props.original._id} />
                         </span>
                     )
                 },
@@ -119,7 +119,7 @@ render() {
         ]
 
         let showTable = true
-        if (!movies.length) {
+        if (!events.length) {
             showTable = false
         }
 
@@ -169,7 +169,7 @@ return (
                         borderRadius: "3px",
                         letterSpacing: "1.5px",  
                     }}
-                        data={movies}
+                        data={events}
                         columns={columns}
                         loading={isLoading}
                         defaultPageSize={10}
@@ -207,7 +207,7 @@ const Delete = styled.div`
     cursor: pointer;
 `
 
-class UpdateMovie extends Component {
+class UpdateEvent extends Component {
     updateUser = event => {
         event.preventDefault()
 
@@ -219,7 +219,7 @@ class UpdateMovie extends Component {
     }
 }
 
-class DeleteMovie extends Component {
+class DeleteEvent extends Component {
     deleteUser = event => {
         event.preventDefault()
 
@@ -228,7 +228,7 @@ class DeleteMovie extends Component {
                 `Do tou want to delete the event ${this.props.id} permanently?`,
             )
         ) {
-            api.deleteMovieById(this.props.id)
+            api.deleteEventById(this.props.id)
             window.location.reload()
         }
     }

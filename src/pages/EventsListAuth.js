@@ -9,7 +9,7 @@ import 'react-table/react-table.css'
 const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
 `
-/*
+
 const Update = styled.div`
     color: #ef9b0f;
     cursor: pointer;
@@ -18,13 +18,13 @@ const Update = styled.div`
 const Delete = styled.div`
     color: #ff0000;
     cursor: pointer;
-`*/
-/*
-class UpdateMovie extends Component {
+`
+
+class UpdateEvent extends Component {
     updateUser = event => {
         event.preventDefault()
 
-        window.location.href = `/movies/update/${this.props.id}`
+        window.location.href = `/events/update/${this.props.id}`
     }
 
     render() {
@@ -32,16 +32,16 @@ class UpdateMovie extends Component {
     }
 }
 
-class DeleteMovie extends Component {
+class DeleteEvent extends Component {
     deleteUser = event => {
         event.preventDefault()
 
         if (
             window.confirm(
-                `Do tou want to delete the movie ${this.props.id} permanently?`,
+                `Do tou want to delete the event ${this.props.id} permanently?`,
             )
         ) {
-            api.deleteMovieById(this.props.id)
+            api.deleteEventById(this.props.id)
             window.location.reload()
         }
     }
@@ -49,13 +49,13 @@ class DeleteMovie extends Component {
     render() {
         return <Delete onClick={this.deleteUser}>Delete</Delete>
     }
-}*/
+}
 
-class MoviesList extends Component {
+class EventsList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            movies: [],
+            events: [],
             columns: [],
             isLoading: false,
         }
@@ -64,24 +64,24 @@ class MoviesList extends Component {
     componentDidMount = async () => {
         this.setState({ isLoading: true })
 
-        await api.getAllMovies().then(movies => {
+        await api.getAllEvents().then(events => {
             this.setState({
-                movies: movies.data.data,
+                events: events.data.data,
                 isLoading: false,
             })
         })
     }
 
     render() {
-        const { movies, isLoading } = this.state
-        /*console.log('TCL: MoviesList -> render -> movies', movies) ---test event list--- */
+        const { events, isLoading } = this.state
+        console.log('TCL: EventsList -> render -> events', events)
 
         const columns = [
-            /*{
+            {
                 Header: 'ID',
                 accessor: '_id',
                 filterable: true,
-            },*/
+            },
             {
                 Header: 'Name',
                 accessor: 'name',
@@ -93,17 +93,17 @@ class MoviesList extends Component {
                 filterable: true,
             },
             {
-                Header: 'Date & Time',
+                Header: 'Time',
                 accessor: 'time',
                 Cell: props => <span>{props.value.join(' / ')}</span>,
             },
-            /*{
+            {
                 Header: '',
                 accessor: '',
                 Cell: function(props) {
                     return (
                         <span>
-                            <DeleteMovie id={props.original._id} />
+                            <DeleteEvent id={props.original._id} />
                         </span>
                     )
                 },
@@ -114,15 +114,15 @@ class MoviesList extends Component {
                 Cell: function(props) {
                     return (
                         <span>
-                            <UpdateMovie id={props.original._id} />
+                            <UpdateEvent id={props.original._id} />
                         </span>
                     )
                 },
-            },*/
+            },
         ]
 
         let showTable = true
-        if (!movies.length) {
+        if (!events.length) {
             showTable = false
         }
 
@@ -130,7 +130,7 @@ class MoviesList extends Component {
             <Wrapper>
                 {showTable && (
                     <ReactTable
-                        data={movies}
+                        data={events}
                         columns={columns}
                         loading={isLoading}
                         defaultPageSize={10}
@@ -143,4 +143,4 @@ class MoviesList extends Component {
     }
 }
 
-export default MoviesList
+export default EventsList

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const Movie = new Schema(
+const Event = new Schema(
     {
         name: {type: String, required: true},
         time: {type: [String], required: true},
@@ -13,4 +13,4 @@ const Movie = new Schema(
 
 
 //module.exports = mongoose.model('users', Movie)
-module.exports = mongoose.model('events', Movie)  //Added to test. Here looks like i send the needed collection
+module.exports = mongoose.model('events', Event)  //Added to test. Here looks like i send the needed collection

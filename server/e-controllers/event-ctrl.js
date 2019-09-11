@@ -1,7 +1,7 @@
-const Movie = require('../models/movie-model')
+const Event = require('../models/event-model')
 
 
-createMovie = (req, res) => {
+createEvent = (req, res) => {
     const body = req.body
 
     if (!body) {
@@ -11,18 +11,18 @@ createMovie = (req, res) => {
         })
     }
 
-    const movie = new Movie(body)
+    const event = new Event(body)
 
-    if (!movie) {
+    if (!event) {
         return res.status(400).json({ success: false, error: err })
     }
 
-    movie
+    event
         .save()
         .then(() => {
             return res.status(201).json({
                 success: true,
-                id: movie._id,
+                id: event._id,
                 message: 'Event created!',
             })
         })
@@ -34,7 +34,7 @@ createMovie = (req, res) => {
         })
 }
 
-updateMovie = async (req, res) => {
+updateEvent = async (req, res) => {
     const body = req.body
 
     if (!body) {
@@ -44,23 +44,23 @@ updateMovie = async (req, res) => {
         })
     }
 
-    Movie.findOne({ _id: req.params.id }, (err, movie) => {
+    Event.findOne({ _id: req.params.id }, (err, event) => {
         if (err) {
             return res.status(404).json({
                 err,
                 message: 'Event not found!',
             })
         }
-        movie.name = body.name
-        movie.time = body.time
-        movie.description  = body.description 
-        movie.userID = body.userID //added
-        movie
+        event.name = body.name
+        event.time = body.time
+        event.description  = body.description 
+        event.userID = body.userID //added
+        event
             .save()
             .then(() => {
                 return res.status(200).json({
                     success: true,
-                    id: movie._id,
+                    id: event._id,
                     message: 'Event updated!',
                 })
             })
@@ -73,55 +73,55 @@ updateMovie = async (req, res) => {
     })
 }
 
-deleteMovie = async (req, res) => {
-    await Movie.findOneAndDelete({ _id: req.params.id }, (err, movie) => {
+deleteEvent = async (req, res) => {
+    await Event.findOneAndDelete({ _id: req.params.id }, (err, event) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
 
-        if (!movie) {
+        if (!event) {
             return res
                 .status(404)
                 .json({ success: false, error: `Event not found` })
         }
 
-        return res.status(200).json({ success: true, data: movie })
+        return res.status(200).json({ success: true, data: event })
     }).catch(err => console.log(err))
 }
 
-getMovieById = async (req, res) => {
-    await Movie.findOne({ _id: req.params.id }, (err, movie) => {
+getEventById = async (req, res) => {
+    await Event.findOne({ _id: req.params.id }, (err, event) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
 
-        if (!movie) {
+        if (!event) {
             return res
                 .status(404)
                 .json({ success: false, error: `Event not found` })
         }
-        return res.status(200).json({ success: true, data: movie })
+        return res.status(200).json({ success: true, data: event })
     }).catch(err => console.log(err))
 }
 
-getMovies = async (req, res) => {
-    await Movie.find({}, (err, movies) => {
+getEvents = async (req, res) => {
+    await Event.find({}, (err, events) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
-        if (!movies.length) {
+        if (!events.length) {
             return res
                 .status(404)
                 .json({ success: false, error: `Event not found` })
         }
-        return res.status(200).json({ success: true, data: movies })
+        return res.status(200).json({ success: true, data: events })
     }).catch(err => console.log(err))
 }
 
 module.exports = {
-    createMovie,
-    updateMovie,
-    deleteMovie,
-    getMovies,
-    getMovieById,
+    createEvent,
+    updateEvent,
+    deleteEvent,
+    getEvents,
+    getEventById,
 }

@@ -5,19 +5,19 @@ const api = axios.create({
 })
 
 
-export const insertMovie = payload => api.post(`/dashboard/event`, payload) //changed
-export const getAllMovies = () => api.get(`/events`)
-export const updateMovieById = (id, payload) => api.put(`/event/${id}`, payload)
-export const deleteMovieById = id => api.delete(`/event/${id}`)
-export const getMovieById = id => api.get(`/event/${id}`)
+export const insertEvent = payload => api.post(`/dashboard/event`, payload) //changed
+export const getAllEvents = () => api.get(`/events`)
+export const updateEventById = (id, payload) => api.put(`/event/${id}`, payload)
+export const deleteEventById = id => api.delete(`/event/${id}`)
+export const getEventById = id => api.get(`/event/${id}`)
 
 
 const apis = {
-    insertMovie,
-    getAllMovies,
-    updateMovieById,
-    deleteMovieById,
-    getMovieById,
+    insertEvent,
+    getAllEvents,
+    updateEventById,
+    deleteEventById,
+    getEventById,
 }
 
 export default apis

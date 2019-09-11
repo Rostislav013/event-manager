@@ -88,12 +88,12 @@ class EventUpdate extends Component {
        
     }
 
-    handleUpdateMovie = async () => {
+    handleUpdateEvent = async () => {
         const { id, name, description, time, userID } = this.state
         const arrayTime = time.split('/')
         const payload = { userID, name, description, time: arrayTime }
 
-        await api.updateMovieById(id, payload).then(res => {
+        await api.updateEventById(id, payload).then(res => {
             window.alert(`Event updated successfully`)
             this.setState({
                 name: '',
@@ -106,13 +106,13 @@ class EventUpdate extends Component {
 
     componentDidMount = async () => {
         const { id } = this.state
-        const movie = await api.getMovieById(id)
+        const event = await api.getEventById(id)
 
         this.setState({
-            name: movie.data.data.name,
-            description: movie.data.data.description,
-            time: movie.data.data.time.join('/'),
-            userID: movie.data.data.userID,
+            name: event.data.data.name,
+            description: event.data.data.description,
+            time: event.data.data.time.join('/'),
+            userID: event.data.data.userID,
         })
     }
 
@@ -145,7 +145,7 @@ class EventUpdate extends Component {
                     onChange={this.handleChangeInputTime}
                 />
 
-                <Button  onClick={this.handleUpdateMovie} >Update Event</Button>
+                <Button  onClick={this.handleUpdateEvent} >Update Event</Button>
                 <CancelButton href={'/dashboard'}>Cancel</CancelButton>
             </Wrapper>
         )

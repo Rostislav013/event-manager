@@ -9,7 +9,7 @@ import 'react-table/react-table.css'
 const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
 `
-
+/*
 const Update = styled.div`
     color: #ef9b0f;
     cursor: pointer;
@@ -18,9 +18,9 @@ const Update = styled.div`
 const Delete = styled.div`
     color: #ff0000;
     cursor: pointer;
-`
-
-class UpdateMovie extends Component {
+`*/
+/*
+class UpdateEvents extends Component {
     updateUser = event => {
         event.preventDefault()
 
@@ -49,13 +49,13 @@ class DeleteMovie extends Component {
     render() {
         return <Delete onClick={this.deleteUser}>Delete</Delete>
     }
-}
+}*/
 
-class MoviesList extends Component {
+class EventsList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            movies: [],
+            events: [],
             columns: [],
             isLoading: false,
         }
@@ -64,24 +64,24 @@ class MoviesList extends Component {
     componentDidMount = async () => {
         this.setState({ isLoading: true })
 
-        await api.getAllMovies().then(movies => {
+        await api.getAllEvents().then(events => {
             this.setState({
-                movies: movies.data.data,
+                events: events.data.data,
                 isLoading: false,
             })
         })
     }
 
     render() {
-        const { movies, isLoading } = this.state
-        console.log('TCL: MoviesList -> render -> movies', movies)
+        const { events, isLoading } = this.state
+        /*console.log('TCL: MoviesList -> render -> movies', movies) ---test event list--- */
 
         const columns = [
-            {
+            /*{
                 Header: 'ID',
                 accessor: '_id',
                 filterable: true,
-            },
+            },*/
             {
                 Header: 'Name',
                 accessor: 'name',
@@ -93,11 +93,11 @@ class MoviesList extends Component {
                 filterable: true,
             },
             {
-                Header: 'Time',
+                Header: 'Date & Time',
                 accessor: 'time',
                 Cell: props => <span>{props.value.join(' / ')}</span>,
             },
-            {
+            /*{
                 Header: '',
                 accessor: '',
                 Cell: function(props) {
@@ -118,11 +118,11 @@ class MoviesList extends Component {
                         </span>
                     )
                 },
-            },
+            },*/
         ]
 
         let showTable = true
-        if (!movies.length) {
+        if (!events.length) {
             showTable = false
         }
 
@@ -130,7 +130,7 @@ class MoviesList extends Component {
             <Wrapper>
                 {showTable && (
                     <ReactTable
-                        data={movies}
+                        data={events}
                         columns={columns}
                         loading={isLoading}
                         defaultPageSize={10}
@@ -143,4 +143,4 @@ class MoviesList extends Component {
     }
 }
 
-export default MoviesList
+export default EventsList
