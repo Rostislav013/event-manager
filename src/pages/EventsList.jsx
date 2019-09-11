@@ -1,10 +1,9 @@
-import React, { Component } from 'react'
-import ReactTable from 'react-table'
-import api from '../e-api/api'
-
-import styled from 'styled-components'
-
-import 'react-table/react-table.css'
+import React, { Component } from 'react';
+import ReactTable from 'react-table';
+import api from '../e-api/api';
+import styled from 'styled-components';
+import 'react-table/react-table.css';
+import react from '../components/layout/react.png'
 
 const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
@@ -127,6 +126,8 @@ class EventsList extends Component {
         }
 
         return (
+            <div>
+                <h3 className='eventsHeader'>Choose wisely where to go</h3>
             <Wrapper>
                 {showTable && (
                     <ReactTable
@@ -139,6 +140,10 @@ class EventsList extends Component {
                     />
                 )}
             </Wrapper>
+                <div  className="madeInReact">
+                    <img src={react} alt="Made in React" />
+                </div>
+            </div>
         )
     }
 }

@@ -13,7 +13,7 @@ import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import EventInsert from "./components/dashboard/EventInsert";
 import EventUpdate from "./components/dashboard/EventUpdate";
-import { EventsList, EventsListAuth } from './pages' // first mistake here
+import { EventsList, EventsListAuth } from './pages';
 
 // Check for token to keep an user logged in
 if (localStorage.jwtToken) {
