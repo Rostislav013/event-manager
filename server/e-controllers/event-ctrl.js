@@ -54,7 +54,8 @@ updateEvent = async (req, res) => {
         event.name = body.name
         event.time = body.time
         event.description  = body.description 
-        event.userID = body.userID //added
+        event.userID = body.userID 
+        event.date = body.date //added
         event
             .save()
             .then(() => {

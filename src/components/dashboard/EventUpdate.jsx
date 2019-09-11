@@ -60,6 +60,7 @@ class EventUpdate extends Component {
             id: this.props.match.params.id,
             name: '',
             description: '',
+            date: '',
             time: '',
             userID: '',
         }
@@ -81,23 +82,26 @@ class EventUpdate extends Component {
         this.setState({ description })
         
     }
-
+    handleChangeInputDate = async event => {
+        const date = event.target.value
+        this.setState({ date })
+    }
     handleChangeInputTime = async event => {
         const time = event.target.value
         this.setState({ time })
-       
     }
 
     handleUpdateEvent = async () => {
-        const { id, name, description, time, userID } = this.state
+        const { id, name, description, date, time, userID } = this.state
         const arrayTime = time.split('/')
-        const payload = { userID, name, description, time: arrayTime }
+        const payload = { userID, name, description, date, time: arrayTime }
 
         await api.updateEventById(id, payload).then(res => {
             window.alert(`Event updated successfully`)
             this.setState({
                 name: '',
                 description: '',
+                date: '',
                 time: '',
                 userID: '',
             })
@@ -111,6 +115,7 @@ class EventUpdate extends Component {
         this.setState({
             name: event.data.data.name,
             description: event.data.data.description,
+            date: event.data.data.date,
             time: event.data.data.time.join('/'),
             userID: event.data.data.userID,
         })
@@ -119,7 +124,7 @@ class EventUpdate extends Component {
     render() {
         const { user } = this.props.auth; // dont delete
         console.log(user.name);
-        const { name, description, time, userID } = this.state
+        const { name, description, date, time, userID } = this.state
         return (
             <Wrapper>
                 <Title>Create Event</Title>
@@ -137,7 +142,12 @@ class EventUpdate extends Component {
                     value={description}
                     onChange={this.handleChangeInputDescription}
                 />
-
+                <Label>Date: </Label>
+                <InputText
+                    type="text"
+                    value={date}
+                    onChange={this.handleChangeInputDate}
+                />
                 <Label>Date & Time: </Label>
                 <InputText
                     type="text"

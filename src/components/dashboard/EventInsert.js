@@ -55,6 +55,7 @@ constructor(props) {
     this.state = {
         name: '',
         description: '',
+        date: '',
         time: '',
         userID: '',
         
@@ -80,6 +81,11 @@ handleChangeInputDescription = async event => {
 
     this.setState({ description })
 }
+handleChangeInputDate = async event => {
+  const date = event.target.value
+  this.setState({ date})
+  
+}
 
 handleChangeInputTime = async event => {
     const time = event.target.value
@@ -98,15 +104,16 @@ handleChangeInputUser = async event => {
 }*/
 
 handleIncludeEvent = async () => {
-    const { name, description, time, userID } = this.state
+    const { name, description, date, time, userID } = this.state
     const arrayTime = time.split('/')
-    const payload = { userID, name, description, time: arrayTime }
+    const payload = { userID, name, description, date, time: arrayTime }
 
     await api.insertEvent(payload).then(res => {
         window.alert(`Event inserted successfully`)
         this.setState({
             name: '',
             description: '',
+            date: '',
             time: '',
             userID: '',
         })
@@ -116,7 +123,7 @@ handleIncludeEvent = async () => {
 render() {
     const { user } = this.props.auth;
     //console.log(user.id);
-    const { userID, name, description, time } = this.state;
+    const { userID, name, description, date, time } = this.state;
     
 return (
       <div>
@@ -165,8 +172,13 @@ return (
                     value={description}
                     onChange={this.handleChangeInputDescription}
                 />
-
-                <Label>Date & Time: </Label>
+                <Label>Date: </Label>
+                <InputText
+                    type="date"
+                    value={date}
+                    onChange={this.handleChangeInputDate}
+                />
+                <Label>Time: </Label>
                 <InputText
                     type="text"
                     value={time}

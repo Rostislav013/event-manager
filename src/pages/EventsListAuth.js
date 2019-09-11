@@ -93,6 +93,12 @@ class EventsList extends Component {
                 filterable: true,
             },
             {
+                Header: 'Date',
+                accessor: 'date',
+                filterable: true,
+            },
+            
+            {
                 Header: 'Time',
                 accessor: 'time',
                 Cell: props => <span>{props.value.join(' / ')}</span>,

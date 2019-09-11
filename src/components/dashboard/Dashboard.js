@@ -67,16 +67,16 @@ render() {
         //console.log('TCL: MoviesList -> render -> events', events) 
           
        const columns = [
-            {
+            /*{
                 Header: 'ID',
                 accessor: '_id',
                 filterable: true,
                 
-            },
-            {
+            },*/
+            /*{
                 Header: 'UserID',
                 accessor: 'userID',
-            },
+            },*/
             {
                 Header: 'Name',
                 accessor: 'name',
@@ -88,7 +88,12 @@ render() {
                 filterable: true,
             },
             {
-                Header: 'Date & Time',
+                Header: 'Date',
+                accessor: 'date',
+                filterable: true,
+            },
+            {
+                Header: 'Time',
                 accessor: 'time',
                 Cell: props => <span>{props.value.join(' / ')}</span>,
             },
