@@ -54,6 +54,7 @@ constructor(props) {
 
     this.state = {
         name: '',
+        organizator: '',
         description: '',
         date: '',
         time: '',
@@ -68,9 +69,12 @@ handleChangeInputName = async event => {
     const name = event.target.value
    
     this.setState({ name })
+
     const { user } = this.props.auth;
     const userID = user.id
       this.setState({ userID})
+      const organizator = user.name
+      this.setState({ organizator })
     
 }
 
@@ -104,14 +108,15 @@ handleChangeInputUser = async event => {
 }*/
 
 handleIncludeEvent = async () => {
-    const { name, description, date, time, userID } = this.state
+    const { name, organizator, description, date, time, userID } = this.state
     const arrayTime = time.split('/')
-    const payload = { userID, name, description, date, time: arrayTime }
+    const payload = { userID, name, organizator, description, date, time: arrayTime }
 
     await api.insertEvent(payload).then(res => {
         window.alert(`Event inserted successfully`)
         this.setState({
             name: '',
+            organizator: '',
             description: '',
             date: '',
             time: '',
@@ -123,7 +128,7 @@ handleIncludeEvent = async () => {
 render() {
     const { user } = this.props.auth;
     //console.log(user.id);
-    const { userID, name, description, date, time } = this.state;
+    const { userID, name, organizator, description, date, time } = this.state;
     
 return (
       <div>

@@ -59,6 +59,7 @@ class EventUpdate extends Component {
         this.state = {
             id: this.props.match.params.id,
             name: '',
+            organizator : '',
             description: '',
             date: '',
             time: '',
@@ -92,14 +93,15 @@ class EventUpdate extends Component {
     }
 
     handleUpdateEvent = async () => {
-        const { id, name, description, date, time, userID } = this.state
+        const { id, name, organizator, description, date, time, userID } = this.state
         const arrayTime = time.split('/')
-        const payload = { userID, name, description, date, time: arrayTime }
+        const payload = { userID, name, organizator, description, date, time: arrayTime }
 
         await api.updateEventById(id, payload).then(res => {
             window.alert(`Event updated successfully`)
             this.setState({
                 name: '',
+                organizator: '',
                 description: '',
                 date: '',
                 time: '',
@@ -114,6 +116,7 @@ class EventUpdate extends Component {
 
         this.setState({
             name: event.data.data.name,
+            organizator: event.data.data.organizator,
             description: event.data.data.description,
             date: event.data.data.date,
             time: event.data.data.time.join('/'),
@@ -123,8 +126,8 @@ class EventUpdate extends Component {
 
     render() {
         const { user } = this.props.auth; // dont delete
-        console.log(user.name);
-        const { name, description, date, time, userID } = this.state
+        //console.log(user.name);
+        const { name, organizator, description, date, time, userID } = this.state
         return (
             <Wrapper>
                 <Title>Create Event</Title>

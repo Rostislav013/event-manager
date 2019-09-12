@@ -52,6 +52,7 @@ updateEvent = async (req, res) => {
             })
         }
         event.name = body.name
+        event.organizator = body.organizator
         event.time = body.time
         event.description  = body.description 
         event.userID = body.userID 

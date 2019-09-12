@@ -74,8 +74,8 @@ render() {
                 
             },*/
             /*{
-                Header: 'UserID',
-                accessor: 'userID',
+                Header: 'Organizator',
+                accessor: 'organizator',
             },*/
             {
                 Header: 'Name',
