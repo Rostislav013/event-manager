@@ -87,7 +87,7 @@ class EventsList extends Component {
                 filterable: true,
             },
             {
-                Header: 'Organizator',
+                Header: 'Organizer',
                 accessor: 'organizator',
                 filterable: true,
             },
