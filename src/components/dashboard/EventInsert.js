@@ -4,6 +4,13 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import api from '../../e-api/api'
 import styled from 'styled-components'
+import { MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+
+import DateFnsUtils from '@date-io/date-fns';
+
+
 
 const Title = styled.h1.attrs({
     className: 'h1',
@@ -12,6 +19,7 @@ const Title = styled.h1.attrs({
 const Wrapper = styled.div.attrs({
     className: 'form-group',
 })`
+    width: 500px;
     margin: 0 30px;
 `
 
@@ -56,7 +64,7 @@ constructor(props) {
         name: '',
         organizator: '',
         description: '',
-        date: '',
+        date: new Date(), // checke here
         time: '',
         userID: '',
         
@@ -67,9 +75,7 @@ constructor(props) {
 
 handleChangeInputName = async event => {
     const name = event.target.value
-   
     this.setState({ name })
-
     const { user } = this.props.auth;
     const userID = user.id
       this.setState({ userID})
@@ -85,8 +91,14 @@ handleChangeInputDescription = async event => {
 
     this.setState({ description })
 }
-handleChangeInputDate = async event => {
-  const date = event.target.value
+
+handleChangeInputDate = async value => {
+  let dateToStr = value.toString()
+  let den = dateToStr.slice(4,10).split(" ").reverse().join(" ");
+  let year = dateToStr.slice(11,15);
+  let data = `${den} ${year}`;
+  let date = data;
+  console.log(date)
   this.setState({ date})
   
 }
@@ -118,7 +130,7 @@ handleIncludeEvent = async () => {
             name: '',
             organizator: '',
             description: '',
-            date: '',
+            //date: '',
             time: '',
             userID: '',
         })
@@ -138,60 +150,60 @@ return (
             <h4>
               <b>Hey there,</b> {user.name.split(" ")[0]}
             </h4>
-            <button
-              style={{
-                backgroundColor: "white",
-                width: "150px",
-                borderRadius: "3px",
-                letterSpacing: "1.5px",
-                marginTop: "1rem",
-                padding: "5px"
-              }}
-              onClick={this.onLogoutClick}
-              
-            >
-              Logout
-            </button>
+            <Button variant="contained" color="primary" style={{
+                    backgroundColor: 'black', 
+                    width: "120px", 
+                    }}      onClick={this.onLogoutClick}> 
+                    Logout
+              </Button>
 
           </div>
         </div>
         <Wrapper>
-                <Title>Create Event</Title>
+        <Title>Create Event</Title>
+          <Label>Name: </Label>
+           <InputText
+              type="text"
+              value={name}
+              onChange={this.handleChangeInputName}
+          />
 
-                <Label>Name: </Label>
-                <InputText
-                    type="text"
-                    value={name}
-                    onChange={this.handleChangeInputName}
-                    
-                />
+          <Label>Description: </Label>
+          <InputText
+              type="text"
+              value={description}
+              onChange={this.handleChangeInputDescription}
+          />
 
-                <Label>Description: </Label>
-                <InputText
-                    type="text"
-                    /*step="0.1"
-                    lang="en-US"
-                    min="0"
-                    max="10"
-                    pattern="[0-9]+([,\.][0-9]+)?"*/
-                    value={description}
-                    onChange={this.handleChangeInputDescription}
-                />
-                <Label>Date: </Label>
-                <InputText
-                    type="date"
-                    value={date}
-                    onChange={this.handleChangeInputDate}
-                />
-                <Label>Time: </Label>
-                <InputText
-                    type="text"
-                    value={time}
-                    onChange={this.handleChangeInputTime}
-                />
-                <Button onClick={this.handleIncludeEvent}>Add Event</Button>
-                <CancelButton href={'/dashboard'}>Cancel</CancelButton>
-            </Wrapper>
+         
+
+          <Label>Time: </Label>
+          <InputText
+            type="text"
+            value={time}
+            onChange={this.handleChangeInputTime}
+          />
+           <Label>Date: </Label>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <KeyboardDatePicker
+                disableToolbar
+                variant="inline"
+                format="MM/dd/yyyy"
+                margin="normal"
+                id="date-picker-inline"
+                // label="Date picker inline"
+                value={date}
+                onChange={ this.handleChangeInputDate }
+                KeyboardButtonProps={{
+                  'aria-label': 'change date',
+                }}
+              />
+            </MuiPickersUtilsProvider> 
+
+          <br></br><Button onClick={this.handleIncludeEvent} >Add Event</Button>
+
+          <CancelButton href={'/dashboard'}>Cancel</CancelButton>
+          </Wrapper>  
       </div>
     );
   }

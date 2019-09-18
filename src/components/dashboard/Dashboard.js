@@ -7,6 +7,9 @@ import ReactTable from 'react-table';
 import api from '../../e-api/api';
 import styled from 'styled-components';
 import react from '../layout/react.png';
+import Button from '@material-ui/core/Button';
+
+
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -127,49 +130,45 @@ render() {
             showTable = false
         }
 
+
 return (
       <div>
         
         <div className="row">
-          <div className="col s12 center-align">
-            <h4>
-              <b>Hey there,</b> {user.name.split(" ")[0]}
-            </h4>
-            <button
-              style={{
-                backgroundColor: "white",
-                width: "150px",
-                borderRadius: "3px",
-                letterSpacing: "1.5px",
-                marginTop: "1rem",
-                padding: "5px"
-              }}
-              onClick={this.onLogoutClick}
-              
-            >
-              Logout
-            </button>
+            <div className="col s12 center-align">
+                <h4>
+                    <b>Hey there,</b> {user.name.split(" ")[0]}
+                </h4>
 
-          <Link to={`dashboard/events/create` } className="nav-link" 
-                style={{
-                    width: "140px",
+                <Button variant="contained" color="primary" style={{
+                    backgroundColor: 'black', 
+                    width: "120px", 
+                    }}      onClick={this.onLogoutClick}> 
+                    Logout
+                </Button>
+
+
+                <Link to={`dashboard/events/create` } className="nav-link" style={{
                     borderRadius: "3px",
                     letterSpacing: "1.5px",
-                    backgroundColor: "yellow",
                     padding: "5px",
                     marginLeft: "200px"
-                }}>
-                
-              Create Event
-            </Link>
-
-          </div>
+                    }}>
+                    <Button variant="contained" color="primary"  style={{
+                        backgroundColor: 'black', 
+                        width: "140px", 
+                        }}> 
+                        Create event
+                    </Button>
+                </Link>
+            </div>
         </div>
+
         <Wrapper>
                 {showTable && (
                     <ReactTable
                     style={{
-                        width: "100%",
+                        width: "80%",
                         borderRadius: "3px",
                         letterSpacing: "1.5px",  
                     }}
@@ -181,11 +180,11 @@ return (
                         minRows={0}
                     />
                 )}
-            </Wrapper>
-            <div className="madeInReact">
-                <img src={react} alt="Made in React" />
-            </div>
-      </div>
+        </Wrapper>
+        <div className="madeInReact">
+            <img src={react} alt="Made in React" />
+        </div>
+    </div>
     );
   }
 }
