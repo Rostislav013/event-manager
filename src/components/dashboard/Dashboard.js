@@ -3,11 +3,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import { Link } from "react-router-dom";
-import ReactTable from 'react-table'
-import api from '../../e-api/api'
-
-import styled from 'styled-components'
-
+import ReactTable from 'react-table';
+import api from '../../e-api/api';
+import styled from 'styled-components';
+import react from '../layout/react.png';
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -68,16 +67,16 @@ render() {
         //console.log('TCL: MoviesList -> render -> events', events) 
           
        const columns = [
-            {
+            /*{
                 Header: 'ID',
                 accessor: '_id',
                 filterable: true,
                 
-            },
-            {
-                Header: 'UserID',
-                accessor: 'userID',
-            },
+            },*/
+            /*{
+                Header: 'Organizator',
+                accessor: 'organizator',
+            },*/
             {
                 Header: 'Name',
                 accessor: 'name',
@@ -89,7 +88,12 @@ render() {
                 filterable: true,
             },
             {
-                Header: 'Date & Time',
+                Header: 'Date',
+                accessor: 'date',
+                filterable: true,
+            },
+            {
+                Header: 'Time',
                 accessor: 'time',
                 Cell: props => <span>{props.value.join(' / ')}</span>,
             },
@@ -178,6 +182,9 @@ return (
                     />
                 )}
             </Wrapper>
+            <div className="madeInReact">
+                <img src={react} alt="Made in React" />
+            </div>
       </div>
     );
   }

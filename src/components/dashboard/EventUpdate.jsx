@@ -59,7 +59,9 @@ class EventUpdate extends Component {
         this.state = {
             id: this.props.match.params.id,
             name: '',
+            organizator : '',
             description: '',
+            date: '',
             time: '',
             userID: '',
         }
@@ -81,23 +83,27 @@ class EventUpdate extends Component {
         this.setState({ description })
         
     }
-
+    handleChangeInputDate = async event => {
+        const date = event.target.value
+        this.setState({ date })
+    }
     handleChangeInputTime = async event => {
         const time = event.target.value
         this.setState({ time })
-       
     }
 
     handleUpdateEvent = async () => {
-        const { id, name, description, time, userID } = this.state
+        const { id, name, organizator, description, date, time, userID } = this.state
         const arrayTime = time.split('/')
-        const payload = { userID, name, description, time: arrayTime }
+        const payload = { userID, name, organizator, description, date, time: arrayTime }
 
         await api.updateEventById(id, payload).then(res => {
             window.alert(`Event updated successfully`)
             this.setState({
                 name: '',
+                organizator: '',
                 description: '',
+                date: '',
                 time: '',
                 userID: '',
             })
@@ -110,7 +116,9 @@ class EventUpdate extends Component {
 
         this.setState({
             name: event.data.data.name,
+            organizator: event.data.data.organizator,
             description: event.data.data.description,
+            date: event.data.data.date,
             time: event.data.data.time.join('/'),
             userID: event.data.data.userID,
         })
@@ -118,8 +126,8 @@ class EventUpdate extends Component {
 
     render() {
         const { user } = this.props.auth; // dont delete
-        console.log(user.name);
-        const { name, description, time, userID } = this.state
+        //console.log(user.name);
+        const { name, organizator, description, date, time, userID } = this.state
         return (
             <Wrapper>
                 <Title>Create Event</Title>
@@ -137,7 +145,12 @@ class EventUpdate extends Component {
                     value={description}
                     onChange={this.handleChangeInputDescription}
                 />
-
+                <Label>Date: </Label>
+                <InputText
+                    type="text"
+                    value={date}
+                    onChange={this.handleChangeInputDate}
+                />
                 <Label>Date & Time: </Label>
                 <InputText
                     type="text"

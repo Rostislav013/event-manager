@@ -5,7 +5,7 @@ import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { Provider } from "react-redux";
 import store from "./store";
-import Navbar from "./components/layout/Navbar";
+import NavbarTest from "./components/layout/NavbarTest.js";
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
@@ -13,7 +13,7 @@ import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import EventInsert from "./components/dashboard/EventInsert";
 import EventUpdate from "./components/dashboard/EventUpdate";
-import { EventsList, EventsListAuth } from './pages' // first mistake here
+import { EventsList, EventsListAuth } from './pages';
 
 // Check for token to keep an user logged in
 if (localStorage.jwtToken) {
@@ -34,7 +34,7 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
-            <Navbar />
+            <NavbarTest />
             <Route exact path="/" component={Landing} />
             <Route exact path="/" component={EventsList} />
             <Route exact path="/register" component={Register} />

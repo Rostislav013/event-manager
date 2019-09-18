@@ -54,7 +54,9 @@ constructor(props) {
 
     this.state = {
         name: '',
+        organizator: '',
         description: '',
+        date: '',
         time: '',
         userID: '',
         
@@ -67,9 +69,12 @@ handleChangeInputName = async event => {
     const name = event.target.value
    
     this.setState({ name })
+
     const { user } = this.props.auth;
     const userID = user.id
       this.setState({ userID})
+      const organizator = user.name
+      this.setState({ organizator })
     
 }
 
@@ -79,6 +84,11 @@ handleChangeInputDescription = async event => {
         : this.state.description
 
     this.setState({ description })
+}
+handleChangeInputDate = async event => {
+  const date = event.target.value
+  this.setState({ date})
+  
 }
 
 handleChangeInputTime = async event => {
@@ -98,15 +108,17 @@ handleChangeInputUser = async event => {
 }*/
 
 handleIncludeEvent = async () => {
-    const { name, description, time, userID } = this.state
+    const { name, organizator, description, date, time, userID } = this.state
     const arrayTime = time.split('/')
-    const payload = { userID, name, description, time: arrayTime }
+    const payload = { userID, name, organizator, description, date, time: arrayTime }
 
     await api.insertEvent(payload).then(res => {
         window.alert(`Event inserted successfully`)
         this.setState({
             name: '',
+            organizator: '',
             description: '',
+            date: '',
             time: '',
             userID: '',
         })
@@ -116,7 +128,7 @@ handleIncludeEvent = async () => {
 render() {
     const { user } = this.props.auth;
     //console.log(user.id);
-    const { userID, name, description, time } = this.state;
+    const { userID, name, organizator, description, date, time } = this.state;
     
 return (
       <div>
@@ -165,8 +177,13 @@ return (
                     value={description}
                     onChange={this.handleChangeInputDescription}
                 />
-
-                <Label>Date & Time: </Label>
+                <Label>Date: </Label>
+                <InputText
+                    type="date"
+                    value={date}
+                    onChange={this.handleChangeInputDate}
+                />
+                <Label>Time: </Label>
                 <InputText
                     type="text"
                     value={time}
