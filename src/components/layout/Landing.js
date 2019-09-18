@@ -6,9 +6,7 @@ class Landing extends Component {
   render() {
     return (
       <div>
-        <div className="madeInReact">
-          <img src={react} alt="Made in React" />
-        </div>
+        
       </div>
     );
   }

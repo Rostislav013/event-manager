@@ -150,7 +150,7 @@ class EventsList extends Component {
                     />
                 )}
             </Wrapper>
-                <div  className="madeInReact">
+            <div  className="madeInReact">
                     <img src={react} alt="Made in React" />
                 </div>
             </div>
