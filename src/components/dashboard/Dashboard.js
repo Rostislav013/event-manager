@@ -244,18 +244,6 @@ class DeleteEvent extends Component {
     }
 }
 
-  
-   
-
-
-
-
-
-
-
-
-
-
 
 export default 
  

@@ -9,7 +9,7 @@ import { MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
 
 import DateFnsUtils from '@date-io/date-fns';
-
+import Button from '@material-ui/core/Button';
 
 
 const Title = styled.h1.attrs({
@@ -21,6 +21,8 @@ const Wrapper = styled.div.attrs({
 })`
     width: 500px;
     margin: 0 30px;
+    center;
+    border: 2px solid black;
 `
 
 const Label = styled.label`
@@ -32,12 +34,12 @@ const InputText = styled.input.attrs({
 })`
     margin: 5px;
 `
-
+/*
 const Button = styled.button.attrs({
     className: `btn btn-primary`,
 })`
     margin: 15px 15px 15px 5px;
-`
+`*/
 
 const CancelButton = styled.a.attrs({
     className: `btn btn-danger`,
@@ -200,9 +202,20 @@ return (
               />
             </MuiPickersUtilsProvider> 
 
-          <br></br><Button onClick={this.handleIncludeEvent} >Add Event</Button>
-
-          <CancelButton href={'/dashboard'}>Cancel</CancelButton>
+          <br></br>
+            <Button onClick={this.handleIncludeEvent} style={{
+              backgroundColor: 'black',
+              color: 'white',
+              margin: '15px',        
+                }} >Add Event
+            </Button>
+                     
+            <Button href={'/dashboard'} style={{
+              backgroundColor: 'black',
+              color: 'white',
+              margin: '15px',
+                }}>Cancel
+            </Button>
           </Wrapper>  
       </div>
     );
