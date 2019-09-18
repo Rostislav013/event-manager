@@ -21,6 +21,7 @@ app.use(bodyParser.json());
 //DB Config
 const db = require('./config/keys').mongoURL;
 
+require('dotenv').config()
 
 //Connect to MongoDB
 mongoose
