@@ -1,72 +1,82 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
 
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-class Navbar extends Component {
-  render() {
-    return (
-      <div className="navbar-fixed">
-        <nav className="z-depth-0">
-          <div className="nav-wrapper white">
-            <Link
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+    
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  button: {
+    margin: '20px',
+    right: '0px',
+    color: 'white',
+  },
+  butts: {
+      position: 'absolute',
+      right: '0px',
+  },
+  headerBar: {
+    backgroundColor: 'black',
+    color: 'white',
+  }
+}));
+
+export default function ButtonAppBar() {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+      <AppBar position="static" className={classes.headerBar}>
+        <Toolbar>
+        <Link
               to="/"
               style={{
-                fontFamily: "monospace"
+                fontFamily: "monospace",
+                
               }}
               className="col s5 brand-logo center black-text"
             >
               Events
             </Link>
-            <div className="col s6">
-            <Link
-                to="/login"
-                style={{
-                  color: "black",
-                  width: "140px",
-                  borderRadius: "3px",
-                  letterSpacing: "1.5px",
-                  backgroundColor: "yellow",
-                  padding: "5px",
-                  margin: "20px"
-                }}
-                /*className="btn btn-large btn-flat waves-effect white black-text"*/
-              >
-                Log In
+
+
+          <div className={classes.butts}>
+                   
+          <Link to="/login">
+          <Button className={classes.button}>
+              Log in
+            </Button>
               </Link>
-              <Link
-                to="/register"
-                style={{
-                  color: "black",
-                  width: "140px",
-                  borderRadius: "3px",
-                  letterSpacing: "1.5px",
-                  backgroundColor: "yellow",
-                  padding: "5px",
-                  margin: "20px"
-                }}
-                /*className="btn btn-large waves-effect waves-light hoverable blue accent-3"*/
-              >
-                Register
+
+
+              <Link to="/register">
+              <Button className={classes.button}>
+              Register
+            </Button>             
               </Link>
-              <Link to="/events/list" className="nav-link"
-            style={{
-              color: "black",
-              width: "140px",
-              borderRadius: "3px",
-              letterSpacing: "1.5px",
-              backgroundColor: "yellow",
-              padding: "5px",
-              margin: "20px"
-            }}>
+
+
+              <Link to="/events/list" >
+              <Button className={classes.button}>
               Event List
+            </Button>
             </Link>
-                       
-            
-              </div>
-          </div>
-        </nav>
-      </div>
-    );
-  }
+
+          
+         </div>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 }
-export default Navbar;
