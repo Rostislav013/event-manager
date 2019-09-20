@@ -8,7 +8,7 @@ import api from '../../e-api/api';
 import styled from 'styled-components';
 import react from '../layout/react.png';
 import Button from '@material-ui/core/Button';
-
+import './reactTable.css'
 
 
 class Dashboard extends Component {
@@ -80,15 +80,25 @@ render() {
                 Header: 'Organizator',
                 accessor: 'organizator',
             },*/
+            
             {
-                Header: 'Name',
+                Header:  () => (
+                    <div
+                      style={{
+                        backgroundColor:"pink",
+                        
+                      }}
+                    >Name</div>),
                 accessor: 'name',
                 filterable: true,
+                style: { 'white-space': 'unset' }
             },
             {
                 Header: 'Description',
                 accessor: 'description',
                 filterable: true,
+                minWidth: 500,
+                style: { 'white-space': 'unset' }
             },
             {
                 Header: 'Date',
@@ -98,7 +108,7 @@ render() {
             {
                 Header: 'Time',
                 accessor: 'time',
-                Cell: props => <span>{props.value.join(' / ')}</span>,
+                //Cell: props => <span>{props.value.join(' / ')}</span>,
             },
             
             {
@@ -168,14 +178,14 @@ return (
                 {showTable && (
                     <ReactTable
                     style={{
-                        width: "80%",
+                        width: "100%",
                         borderRadius: "3px",
                         letterSpacing: "1.5px",  
                     }}
                         data={events}
                         columns={columns}
                         loading={isLoading}
-                        defaultPageSize={10}
+                        defaultPageSize={20}
                         showPageSizeOptions={true}
                         minRows={0}
                     />

@@ -19,8 +19,8 @@ const Wrapper = styled.div.attrs({
 })`
     width: 500px;
     margin: 0 30px;
-    center;
-    border: 2px solid black;
+    
+    
 `
 
 const Label = styled.label`
@@ -64,7 +64,7 @@ componentDidMount = async () => {
      newList = newList.reverse().join(`/`);
     
 
-      console.log(newList);
+      //console.log(newList);
       this.setState({
           events: newList,
           isLoading: false,
@@ -215,11 +215,6 @@ return (
           />
 
          
-
-        
-
-
-
            <Grid  container
                   direction="column"
                   justify="space-around"
@@ -236,7 +231,7 @@ return (
                 onChange={ this.handleChangeInputDate }
                 KeyboardButtonProps={{
                 'aria-label': 'change date',
-                  }}
+                  }} style={{ margin: '5px'  }}
                 />
 
                 <TimePicker 
@@ -246,7 +241,7 @@ return (
                   value={forTime}
                   minutesStep={5}
                   onChange={this.handleChangeInputTime}
-                  label="Time"
+                  label="Time" style={{ margin: '5px'  }}
                  />
 
                 
@@ -258,20 +253,16 @@ return (
             </Grid>
 
 
-
-
-          <br></br>
             <Button onClick={this.handleIncludeEvent} style={{
               backgroundColor: 'black',
               color: 'white',
-              margin: '15px',        
+              margin: '50px 10px',        
                 }} >Add Event
             </Button>
                      
             <Button href={'/dashboard'} style={{
-              backgroundColor: 'black',
-              color: 'white',
-              margin: '15px',
+             
+              
                 }}>Cancel
             </Button>
           </Wrapper>  
@@ -311,4 +302,4 @@ export default
     { logoutUser }
   )(EventInsert);
 
-// Dashboard;
+
