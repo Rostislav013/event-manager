@@ -95,6 +95,8 @@ class EventsList extends Component {
                 Header: 'Description',
                 accessor: 'description',
                 filterable: true,
+                minWidth: 300,
+                style: { 'white-space': 'unset' } // allow for words wrap inside only this cell
             },
             {
                 Header: 'Date',
@@ -137,7 +139,7 @@ class EventsList extends Component {
 
         return (
             <div>
-                <h3 className='eventsHeader'>Choose wisely where to go</h3>
+                <h3 className='eventsHeader' style={{textAlign: 'center'}}>Choose wisely where to go</h3>
             <Wrapper>
                 {showTable && (
                     <ReactTable
@@ -151,8 +153,8 @@ class EventsList extends Component {
                 )}
             </Wrapper>
             <div  className="madeInReact">
-                    <img src={react} alt="Made in React" />
-                </div>
+                    <img src={react} alt="Made in React" style={{position: 'absolute',right: '0', }} />
+            </div>
             </div>
         )
     }

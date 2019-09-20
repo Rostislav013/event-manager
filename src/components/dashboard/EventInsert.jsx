@@ -4,13 +4,11 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import api from '../../e-api/api'
 import styled from 'styled-components'
-import { MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
-
+import { MuiPickersUtilsProvider, KeyboardDatePicker, TimePicker } from '@material-ui/pickers';
+import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
-
-
+import Button from '@material-ui/core/Button';
+import react from '../layout/react.png';
 
 const Title = styled.h1.attrs({
     className: 'h1',
@@ -21,6 +19,8 @@ const Wrapper = styled.div.attrs({
 })`
     width: 500px;
     margin: 0 30px;
+    
+    
 `
 
 const Label = styled.label`
@@ -32,18 +32,14 @@ const InputText = styled.input.attrs({
 })`
     margin: 5px;
 `
-
+/*
 const Button = styled.button.attrs({
     className: `btn btn-primary`,
 })`
     margin: 15px 15px 15px 5px;
-`
+`*/
 
-const CancelButton = styled.a.attrs({
-    className: `btn btn-danger`,
-})`
-    margin: 15px 15px 15px 5px;
-`
+
 
 class EventInsert extends Component {
   onLogoutClick = e => {
@@ -55,6 +51,26 @@ componentDidMount = async () => {
     
     const { user } = this.props.auth; 
     //console.log(user);
+    
+    await api.getAllEvents().then(events => {
+      let her = events.data.data
+      //console.log(her[0].user);
+
+      let newList = [];
+      for(let i = 0; i < her.length; i++){
+          newList.push(her[i].date);
+      } 
+    
+     newList = newList.reverse().join(`/`);
+    
+
+      //console.log(newList);
+      this.setState({
+          events: newList,
+          isLoading: false,
+          booked: newList,
+      })
+  })
 };
 
 constructor(props) {
@@ -64,10 +80,12 @@ constructor(props) {
         name: '',
         organizator: '',
         description: '',
-        date: new Date(), // checke here
+        date: '', // checke here
+        forDate: new Date(),
         time: '',
+        forTime: new Date(),
         userID: '',
-        
+        booked: '',
     }
 };
 
@@ -93,20 +111,36 @@ handleChangeInputDescription = async event => {
 }
 
 handleChangeInputDate = async value => {
+
+  const forDate = value
+  //Choosen date go into datePicker value
+  this.setState({ forDate })
+
+
+// transfer date to string n edit in our needed format
   let dateToStr = value.toString()
   let den = dateToStr.slice(4,10).split(" ").reverse().join(" ");
   let year = dateToStr.slice(11,15);
   let data = `${den} ${year}`;
   let date = data;
-  console.log(date)
+
   this.setState({ date})
   
 }
 
-handleChangeInputTime = async event => {
-    const time = event.target.value
+handleChangeInputTime = async value => {
+    //console.log(value)
+    //set TimePicker value into choosen time
+    const forTime = value;
+    this.setState({ forTime})
+    //Edit time to our needed format
+    let timeToStr = value.toString()
+    console.log(timeToStr)
+    let timePicked = timeToStr.slice(16,21)
+    console.log(timePicked)
+    const time = timePicked
     this.setState({ time})
-    
+  
 }
 
 
@@ -120,9 +154,9 @@ handleChangeInputUser = async event => {
 }*/
 
 handleIncludeEvent = async () => {
-    const { name, organizator, description, date, time, userID } = this.state
+    const { name, organizator, description, date, forDate, time, forTime, userID, booked } = this.state
     const arrayTime = time.split('/')
-    const payload = { userID, name, organizator, description, date, time: arrayTime }
+    const payload = { userID, name, organizator, description, date, forDate, time: arrayTime,booked,forTime}
 
     await api.insertEvent(payload).then(res => {
         window.alert(`Event inserted successfully`)
@@ -131,16 +165,18 @@ handleIncludeEvent = async () => {
             organizator: '',
             description: '',
             //date: '',
-            time: '',
+            //time: '',
             userID: '',
         })
     })
 }
 
+
+
 render() {
     const { user } = this.props.auth;
     //console.log(user.id);
-    const { userID, name, organizator, description, date, time } = this.state;
+    const { userID, name, organizator, description, date, forDate, time, forTime, booked } = this.state;
     
 return (
       <div>
@@ -161,6 +197,9 @@ return (
         </div>
         <Wrapper>
         <Title>Create Event</Title>
+        <div>{booked}</div>
+
+
           <Label>Name: </Label>
            <InputText
               type="text"
@@ -176,34 +215,60 @@ return (
           />
 
          
-
-          <Label>Time: </Label>
-          <InputText
-            type="text"
-            value={time}
-            onChange={this.handleChangeInputTime}
-          />
-           <Label>Date: </Label>
+           <Grid  container
+                  direction="column"
+                  justify="space-around"
+                  alignItems="flex-start">
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
+             
+
               <KeyboardDatePicker
-                disableToolbar
-                variant="inline"
-                format="MM/dd/yyyy"
                 margin="normal"
-                id="date-picker-inline"
-                // label="Date picker inline"
-                value={date}
+                id="date-picker-dialog"
+                label="Date "
+                format="MM/dd/yyyy"
+                value={forDate}
                 onChange={ this.handleChangeInputDate }
                 KeyboardButtonProps={{
-                  'aria-label': 'change date',
-                }}
-              />
+                'aria-label': 'change date',
+                  }} style={{ margin: '5px'  }}
+                />
+
+                <TimePicker 
+                  clearable
+                  ampm={false}
+                  //disableFuture
+                  value={forTime}
+                  minutesStep={5}
+                  onChange={this.handleChangeInputTime}
+                  label="Time" style={{ margin: '5px'  }}
+                 />
+
+                
+
+
+
             </MuiPickersUtilsProvider> 
 
-          <br></br><Button onClick={this.handleIncludeEvent} >Add Event</Button>
+            </Grid>
 
-          <CancelButton href={'/dashboard'}>Cancel</CancelButton>
-          </Wrapper>  
+
+            <Button onClick={this.handleIncludeEvent} style={{
+              backgroundColor: 'black',
+              color: 'white',
+              margin: '50px 10px',        
+                }} >Add Event
+            </Button>
+                     
+            <Button href={'/dashboard'} style={{
+             
+              
+                }}>Cancel
+            </Button>
+          </Wrapper> 
+          <div  className="madeInReact">
+                    <img src={react} alt="Made in React" style={{position: 'absolute',right: '0', }} />
+            </div> 
       </div>
     );
   }
@@ -240,4 +305,4 @@ export default
     { logoutUser }
   )(EventInsert);
 
-// Dashboard;
+
