@@ -52,9 +52,9 @@ export default function ButtonAppBar() {
 
           <div className={classes.butts}>
                    
-          <Link to="/login">
+          <Link to="/events/list">
           <Button className={classes.button}>
-              Log in
+          Event List
             </Button>
               </Link>
 
@@ -66,9 +66,9 @@ export default function ButtonAppBar() {
               </Link>
 
 
-              <Link to="/events/list" >
+              <Link to="/login" >
               <Button className={classes.button}>
-              Event List
+              Log in
             </Button>
             </Link>
 

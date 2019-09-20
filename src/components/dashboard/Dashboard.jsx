@@ -82,23 +82,17 @@ render() {
             },*/
             
             {
-                Header:  () => (
-                    <div
-                      style={{
-                        backgroundColor:"pink",
-                        
-                      }}
-                    >Name</div>),
+                Header:'Name',
                 accessor: 'name',
                 filterable: true,
-                style: { 'white-space': 'unset' }
+                style: { 'white-space': 'unset' } // allow for words wrap inside only this cell
             },
             {
                 Header: 'Description',
                 accessor: 'description',
                 filterable: true,
                 minWidth: 500,
-                style: { 'white-space': 'unset' }
+                style: { 'white-space': 'unset' } // allow for words wrap inside only this cell
             },
             {
                 Header: 'Date',
@@ -192,7 +186,7 @@ return (
                 )}
         </Wrapper>
         <div className="madeInReact">
-            <img src={react} alt="Made in React" />
+            <img src={react} alt="Made in React" style={{position: 'absolute',right: '0', }} />
         </div>
     </div>
     );

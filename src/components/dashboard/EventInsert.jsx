@@ -8,7 +8,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker, TimePicker } from '@materi
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import Button from '@material-ui/core/Button';
-
+import react from '../layout/react.png';
 
 const Title = styled.h1.attrs({
     className: 'h1',
@@ -265,7 +265,10 @@ return (
               
                 }}>Cancel
             </Button>
-          </Wrapper>  
+          </Wrapper> 
+          <div  className="madeInReact">
+                    <img src={react} alt="Made in React" style={{position: 'absolute',right: '0', }} />
+            </div> 
       </div>
     );
   }
