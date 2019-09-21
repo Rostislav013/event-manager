@@ -3,8 +3,9 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-
 import Button from '@material-ui/core/Button';
+
+
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -32,6 +33,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ButtonAppBar() {
+  
   const classes = useStyles();
 
   return (
@@ -58,21 +60,24 @@ export default function ButtonAppBar() {
             </Button>
               </Link>
 
-
-              <Link to="/register">
-              <Button className={classes.button}>
-              Register
-            </Button>             
-              </Link>
-
-
               <Link to="/login" >
               <Button className={classes.button}>
               Log in
             </Button>
             </Link>
 
-          
+              <Link to="/register">
+              <Button className={classes.button}>
+              Register
+            </Button>             
+              </Link>
+<Button variant="contained" color="primary" style={{
+                    backgroundColor: 'black', 
+                    width: "120px", 
+                    }}   > 
+                    Logout
+                </Button>
+
          </div>
         </Toolbar>
       </AppBar>

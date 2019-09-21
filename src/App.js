@@ -13,6 +13,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import EventInsert from "./components/dashboard/EventInsert";
 import EventUpdate from "./components/dashboard/EventUpdate";
 import { EventsList, EventsListAuth } from './pages';
+import react from './components/layout/react.png';
 
 // Check for token to keep an user logged in
 if (localStorage.jwtToken) {
@@ -48,9 +49,15 @@ class App extends Component {
                 />
               <PrivateRoute path="/events/listAuth" exact component={EventsListAuth} />
             </Switch>
+            <div  className="madeInReact">
+                    <img src={react} alt="Made in React" style={{position: 'absolute',right: '0', }} />
+            </div>
           </div>
+          
         </Router>
+        
       </Provider>
+      
     );
   }
 }

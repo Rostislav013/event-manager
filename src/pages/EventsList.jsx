@@ -3,7 +3,7 @@ import ReactTable from 'react-table';
 import api from '../e-api/api';
 import styled from 'styled-components';
 import 'react-table/react-table.css';
-import react from '../components/layout/react.png';
+
 
 const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
@@ -62,10 +62,10 @@ class EventsList extends Component {
 
     componentDidMount = async () => {
         this.setState({ isLoading: true })
-
         await api.getAllEvents().then(events => {
+            console.log(events.data.data)
             this.setState({
-                events: events.data.data,
+                events: events.data.data.sort(function(a,b){return   new Date(a.date) - new Date(b.date); }), //sort by dates
                 isLoading: false,
             })
         })
@@ -73,8 +73,7 @@ class EventsList extends Component {
 
     render() {
         const { events, isLoading } = this.state
-        /*console.log('TCL: MoviesList -> render -> movies', movies) ---test event list--- */
-
+      
         const columns = [
             /*{
                 Header: 'ID',
@@ -102,6 +101,7 @@ class EventsList extends Component {
                 Header: 'Date',
                 accessor: 'date',
                 filterable: true,
+                Cell: props => props.value.slice(8,10) + '.' + props.value.slice(5,7) + '.' + props.value.slice(0,4) // here can show data my needed way
             },
             {
                 Header: 'Time',
@@ -146,15 +146,13 @@ class EventsList extends Component {
                         data={events}
                         columns={columns}
                         loading={isLoading}
-                        defaultPageSize={10}
+                        defaultPageSize={20}
                         showPageSizeOptions={true}
                         minRows={0}
                     />
                 )}
             </Wrapper>
-            <div  className="madeInReact">
-                    <img src={react} alt="Made in React" style={{position: 'absolute',right: '0', }} />
-            </div>
+            
             </div>
         )
     }
