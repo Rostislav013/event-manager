@@ -59,7 +59,6 @@ componentDidMount = async () => {
             isLoading: false,
         })
     })
-    //console.log(this.state.events);
 };
 
   
