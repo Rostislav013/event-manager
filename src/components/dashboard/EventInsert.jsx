@@ -80,8 +80,7 @@ constructor(props) {
         name: '',
         organizator: '',
         description: '',
-        date: '', // checke here
-        forDate: new Date(),
+        date: new Date(), // checke here
         time: '',
         forTime: new Date(),
         userID: '',
@@ -112,17 +111,17 @@ handleChangeInputDescription = async event => {
 
 handleChangeInputDate = async value => {
 
-  const forDate = value
-  //Choosen date go into datePicker value
-  this.setState({ forDate })
+  
 
 
 // transfer date to string n edit in our needed format
-  let dateToStr = value.toString()
+  /*let dateToStr = value.toString()
   let den = dateToStr.slice(4,10).split(" ").reverse().join(" ");
   let year = dateToStr.slice(11,15);
   let data = `${den} ${year}`;
-  let date = data;
+  let date = data;*/
+
+  let date = value;
 
   this.setState({ date})
   
@@ -154,9 +153,9 @@ handleChangeInputUser = async event => {
 }*/
 
 handleIncludeEvent = async () => {
-    const { name, organizator, description, date, forDate, time, forTime, userID, booked } = this.state
+    const { name, organizator, description, date, time, forTime, userID, booked } = this.state
     const arrayTime = time.split('/')
-    const payload = { userID, name, organizator, description, date, forDate, time: arrayTime,booked,forTime}
+    const payload = { userID, name, organizator, description, date, time: arrayTime,booked,forTime}
 
     await api.insertEvent(payload).then(res => {
         window.alert(`Event inserted successfully`)
@@ -176,7 +175,7 @@ handleIncludeEvent = async () => {
 render() {
     const { user } = this.props.auth;
     //console.log(user.id);
-    const { userID, name, organizator, description, date, forDate, time, forTime, booked } = this.state;
+    const { userID, name, organizator, description, date, time, forTime, booked } = this.state;
     
 return (
       <div>
@@ -227,7 +226,7 @@ return (
                 id="date-picker-dialog"
                 label="Date "
                 format="MM/dd/yyyy"
-                value={forDate}
+                value={date}
                 onChange={ this.handleChangeInputDate }
                 KeyboardButtonProps={{
                 'aria-label': 'change date',

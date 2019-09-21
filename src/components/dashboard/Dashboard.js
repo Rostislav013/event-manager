@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 import ReactTable from 'react-table';
 import api from '../../e-api/api';
 import styled from 'styled-components';
-import react from '../layout/react.png';
+
 import Button from '@material-ui/core/Button';
-import './reactTable.css'
+
 
 
 class Dashboard extends Component {
@@ -43,8 +43,8 @@ componentDidMount = async () => {
     
     await api.getAllEvents().then(events => {
         let her = events.data.data
-        //console.log(her[0].user);
-
+        
+        //show only the user's events
         let newList = [];
         for(let i = 0; i < her.length; i++){
             if(her[i].userID === user.id) {
@@ -55,11 +55,10 @@ componentDidMount = async () => {
         } 
 
         this.setState({
-            events: newList,
+            events: newList.sort(function(a,b){return   new Date(a.date) - new Date(b.date); }), //sort by dates,
             isLoading: false,
         })
     })
-    //console.log(this.state.events);
 };
 
   
@@ -98,6 +97,7 @@ render() {
                 Header: 'Date',
                 accessor: 'date',
                 filterable: true,
+                Cell: props => props.value.slice(8,10) + '.' + props.value.slice(5,7) + '.' + props.value.slice(0,4) // here can show data my needed way
             },
             {
                 Header: 'Time',
@@ -185,9 +185,7 @@ return (
                     />
                 )}
         </Wrapper>
-        <div className="madeInReact">
-            <img src={react} alt="Made in React" style={{position: 'absolute',right: '0', }} />
-        </div>
+        
     </div>
     );
   }
