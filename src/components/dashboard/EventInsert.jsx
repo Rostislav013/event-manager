@@ -205,9 +205,6 @@ return (
                 KeyboardButtonProps={{
                 'aria-label': 'change date',
                   }} style={{ margin: '5px'  }}
-
-              
-
                 InputProps={{
                     disableUnderline: true,
                    }}
@@ -222,10 +219,6 @@ return (
                   minutesStep={5}
                   onChange={this.handleChangeInputTime}
                   label="Time" style={{ margin: '5px'  }}
-
-                
-              </MuiPickersUtilsProvider> 
-
                   InputProps={{
                     disableUnderline: true,
                    }}
