@@ -12,16 +12,16 @@ import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import EventInsert from "./components/dashboard/EventInsert";
 import EventUpdate from "./components/dashboard/EventUpdate";
-import { EventsList, EventsListAuth } from './pages';
+import {EventsList}  from './pages';
 
 
 // Check for token to keep an user logged in
 if (localStorage.jwtToken) {
-  const token = localStorage.jwtToken;  // Set auth token header auth
-  setAuthToken(token);
-  const decoded = jwt_decode(token);  // Decode token and get user info and exp
-  store.dispatch(setCurrentUser(decoded));  // Set user and isAuthenticated
-  const currentTime = Date.now() / 1000; // Check for expired token,  to get in milliseconds
+    const token = localStorage.jwtToken;  // Set auth token header auth
+    setAuthToken(token);
+    const decoded = jwt_decode(token);  // Decode token and get user info and exp
+    store.dispatch(setCurrentUser(decoded));  // Set user and isAuthenticated
+    const currentTime = Date.now() / 1000; // Check for expired token,  to get in milliseconds
   if (decoded.exp < currentTime) {
       store.dispatch(logoutUser()); // Logout user
       window.location.href = "./login"; // Redirect to login
@@ -39,6 +39,7 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route path="/events/list" exact component={EventsList} />  
+            {/*Valja, privet, add here <Route, remember to import*/}
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <PrivateRoute path="/dashboard/events/create" exact component={EventInsert} />
@@ -47,7 +48,6 @@ class App extends Component {
                     exact
                     component={EventUpdate}
                 />
-              <PrivateRoute path="/events/listAuth" exact component={EventsListAuth} />
             </Switch>
           </div>
         </Router>
@@ -56,4 +56,5 @@ class App extends Component {
     );
   }
 }
+
 export default App;

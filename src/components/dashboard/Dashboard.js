@@ -34,6 +34,7 @@ componentDidMount = async () => {
        
         //show only the user's events
         let newList = [];
+        
         for(let i = 0; i < userEvent.length; i++){
             if(userEvent[i].userID === user.id) {
                 newList.push(userEvent[i]);
@@ -68,7 +69,6 @@ render() {
             {
                 Header: 'Date',
                 accessor: 'date',
-                filterable: true,
                 Cell: props => props.value.slice(8,10) + '.' + props.value.slice(5,7) + '.' + props.value.slice(0,4) // here can show data my needed way
             },
             {

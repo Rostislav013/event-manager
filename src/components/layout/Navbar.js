@@ -42,23 +42,20 @@ export default function ButtonAppBar() {
               Events
         </Link>
 
-
         <div className={classes.butts}>
-                   
           <Link to="/events/list">
             <Button className={classes.button}>
               Event List
             </Button>
-              </Link>
-
-          <Link to="/register">
-              <Button className={classes.button}>Register</Button>             
           </Link>
-          
+
           <Link to="/login" >
               <Button className={classes.button}>Account</Button>
           </Link>
 
+          <Link to="/about">
+              <Button className={classes.button}>About</Button>             
+          </Link>
         </div>
         </Toolbar>
       </AppBar>
