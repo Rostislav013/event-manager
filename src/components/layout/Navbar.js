@@ -71,12 +71,7 @@ export default function ButtonAppBar() {
               Register
             </Button>             
               </Link>
-<Button variant="contained" color="primary" style={{
-                    backgroundColor: 'black', 
-                    width: "120px", 
-                    }}   > 
-                    Logout
-                </Button>
+
 
          </div>
         </Toolbar>
