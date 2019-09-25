@@ -15,8 +15,8 @@ User can add/edit only its own evetns.
 7. Register 
 8. Log in
 9. Ability to create an event after authentication
-10. Ability to see event list after authentication
+10. Ability to see your event list after authentication
 11. Ability edit and delete events after authentication
-12. Show events sorted by date
+12. Events sorted by date
 
 
