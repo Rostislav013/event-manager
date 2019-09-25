@@ -19,9 +19,7 @@ const Wrapper = styled.div.attrs({
 })`
     width: 500px;
     margin: 0 30px;
-    
-    
-`
+ `
 
 const Label = styled.label`
     margin: 5px;
@@ -32,13 +30,6 @@ const InputText = styled.input.attrs({
 })`
     margin: 5px;
 `
-/*
-const Button = styled.button.attrs({
-    className: `btn btn-primary`,
-})`
-    margin: 15px 15px 15px 5px;
-`*/
-
 
 
 class EventInsert extends Component {
@@ -62,13 +53,10 @@ componentDidMount = async () => {
       } 
     
      newList = newList.reverse().join(`/`);
-    
-
       //console.log(newList);
       this.setState({
           events: newList,
           isLoading: false,
-          booked: newList,
       })
   })
 };
@@ -84,7 +72,6 @@ constructor(props) {
         time: '',
         forTime: new Date(),
         userID: '',
-        booked: '',
     }
 };
 
@@ -95,9 +82,9 @@ handleChangeInputName = async event => {
     this.setState({ name })
     const { user } = this.props.auth;
     const userID = user.id
-      this.setState({ userID})
-      const organizator = user.name
-      this.setState({ organizator })
+    this.setState({ userID})
+    const organizator = user.name
+    this.setState({ organizator })
     
 }
 
@@ -105,26 +92,12 @@ handleChangeInputDescription = async event => {
     const description = event.target.validity.valid
         ? event.target.value
         : this.state.description
-
     this.setState({ description })
 }
 
 handleChangeInputDate = async value => {
-
-  
-
-
-// transfer date to string n edit in our needed format
-  /*let dateToStr = value.toString()
-  let den = dateToStr.slice(4,10).split(" ").reverse().join(" ");
-  let year = dateToStr.slice(11,15);
-  let data = `${den} ${year}`;
-  let date = data;*/
-
   let date = value;
-
   this.setState({ date})
-  
 }
 
 handleChangeInputTime = async value => {
@@ -153,9 +126,9 @@ handleChangeInputUser = async event => {
 }*/
 
 handleIncludeEvent = async () => {
-    const { name, organizator, description, date, time, forTime, userID, booked } = this.state
+    const { name, organizator, description, date, time, forTime, userID } = this.state
     const arrayTime = time.split('/')
-    const payload = { userID, name, organizator, description, date, time: arrayTime,booked,forTime}
+    const payload = { userID, name, organizator, description, date, time: arrayTime,forTime}
 
     await api.insertEvent(payload).then(res => {
         window.alert(`Event inserted successfully`)
@@ -175,7 +148,7 @@ handleIncludeEvent = async () => {
 render() {
     const { user } = this.props.auth;
     //console.log(user.id);
-    const { userID, name, organizator, description, date, time, forTime, booked } = this.state;
+    const { userID, name, organizator, description, date, time, forTime } = this.state;
     
 return (
       <div>
@@ -196,7 +169,7 @@ return (
         </div>
         <Wrapper>
         <Title>Create Event</Title>
-        <div>{booked}</div>
+        
 
 
           <Label>Name: </Label>

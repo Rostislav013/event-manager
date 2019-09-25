@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import api from '../../e-api/api'
 import styled from 'styled-components'
-
-
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import { MuiPickersUtilsProvider, KeyboardDatePicker, TimePicker } from '@material-ui/pickers';
+import Grid from '@material-ui/core/Grid';
+import DateFnsUtils from '@date-io/date-fns';
+import Button from '@material-ui/core/Button';
 
 const Title = styled.h1.attrs({
     className: 'h1',
@@ -14,8 +16,9 @@ const Title = styled.h1.attrs({
 const Wrapper = styled.div.attrs({
     className: 'form-group',
 })`
+    width: 500px;
     margin: 0 30px;
-`
+ `
 
 const Label = styled.label`
     margin: 5px;
@@ -27,42 +30,27 @@ const InputText = styled.input.attrs({
     margin: 5px;
 `
 
-const Button = styled.button.attrs({
-    className: `btn btn-primary`,
-})`
-    margin: 15px 15px 15px 5px;
-`
-
-const CancelButton = styled.a.attrs({
-    className: `btn btn-danger`,
-})`
-    margin: 15px 15px 15px 5px;
-`
-
 class EventUpdate extends Component {
     onLogoutClick = e => {
         e.preventDefault();
         this.props.logoutUser();
-      };
-    
-      
+    };
     
     componentDidMount = async () => {
         const { user } = this.props.auth; // dont delete
             
-        
     };
 
     constructor(props) {
         super(props)
-
         this.state = {
             id: this.props.match.params.id,
             name: '',
             organizator : '',
             description: '',
-            date: '',
+            date: new Date(), // checke here
             time: '',
+            forTime: new Date(),
             userID: '',
         }
     }
@@ -70,32 +58,37 @@ class EventUpdate extends Component {
     handleChangeInputName = async event => {
         const name = event.target.value
         this.setState({ name })
-        
-       
-    
     }
 
     handleChangeInputDescription = async event => {
-        const description = event.target.validity.valid
-            ? event.target.value
+        const description = event.target.validity.valid ? event.target.value
             : this.state.description
-
         this.setState({ description })
-        
     }
-    handleChangeInputDate = async event => {
-        const date = event.target.value
-        this.setState({ date })
+
+    handleChangeInputDate = async value => {
+        let date = value;
+        this.setState({ date})
     }
-    handleChangeInputTime = async event => {
-        const time = event.target.value
-        this.setState({ time })
+
+    handleChangeInputTime = async value => {
+        //console.log(value)
+        //set TimePicker value into choosen time
+        const forTime = value;
+        this.setState({ forTime})
+        //Edit time to our needed format
+        let timeToStr = value.toString()
+        let timePicked = timeToStr.slice(16,21)
+        const time = timePicked
+        this.setState({ time})
     }
+
+    
 
     handleUpdateEvent = async () => {
-        const { id, name, organizator, description, date, time, userID } = this.state
+        const { id, name, organizator, description, date, time, forTime, userID } = this.state
         const arrayTime = time.split('/')
-        const payload = { userID, name, organizator, description, date, time: arrayTime }
+        const payload = { userID, name, organizator, description, date, forTime, time: arrayTime }
 
         await api.updateEventById(id, payload).then(res => {
             window.alert(`Event updated successfully`)
@@ -103,8 +96,9 @@ class EventUpdate extends Component {
                 name: '',
                 organizator: '',
                 description: '',
-                date: '',
+                date: new Date(), // checke here
                 time: '',
+                forTime: new Date(),
                 userID: '',
             })
         })
@@ -127,40 +121,65 @@ class EventUpdate extends Component {
     render() {
         const { user } = this.props.auth; // dont delete
         //console.log(user.name);
-        const { name, organizator, description, date, time, userID } = this.state
+        const { name, organizator, description, date, time, forTime, userID } = this.state
         return (
             <Wrapper>
-                <Title>Create Event</Title>
+                <Title>Update Event</Title>
 
                 <Label>Name: </Label>
-                <InputText
-                    type="text"
-                    value={name}
-                    onChange={this.handleChangeInputName}
+           <InputText
+              type="text"
+              value={name}
+              onChange={this.handleChangeInputName}
+          />
+
+          <Label>Description: </Label>
+          <InputText
+              type="text"
+              value={description}
+              onChange={this.handleChangeInputDescription}
+          />
+
+         
+           <Grid  container
+                  direction="column"
+                  justify="space-around"
+                  alignItems="flex-start">
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+             
+
+              <KeyboardDatePicker
+                margin="normal"
+                id="date-picker-dialog"
+                label="Date "
+                format="MM/dd/yyyy"
+                value={date}
+                onChange={ this.handleChangeInputDate }
+                KeyboardButtonProps={{
+                'aria-label': 'change date',
+                  }} style={{ margin: '5px'  }}
                 />
 
-                <Label>Description: </Label>
-                <InputText
-                    type="text"
-                    value={description}
-                    onChange={this.handleChangeInputDescription}
-                />
-                <Label>Date: </Label>
-                <InputText
-                    type="text"
-                    value={date}
-                    onChange={this.handleChangeInputDate}
-                />
-                <Label>Date & Time: </Label>
-                <InputText
-                    type="text"
-                    value={time}
-                    onChange={this.handleChangeInputTime}
-                />
-
-                <Button  onClick={this.handleUpdateEvent} >Update Event</Button>
-                <CancelButton href={'/dashboard'}>Cancel</CancelButton>
-            </Wrapper>
+                <TimePicker 
+                  clearable
+                  ampm={false}
+                  //disableFuture
+                  value={forTime}
+                  minutesStep={5}
+                  onChange={this.handleChangeInputTime}
+                  label="Time" style={{ margin: '5px'  }}
+                 />
+            </MuiPickersUtilsProvider> 
+            </Grid>
+            <Button onClick={this.handleUpdateEvent} style={{
+              backgroundColor: 'black',
+              color: 'white',
+              margin: '50px 10px',        
+                }} >Update Event
+            </Button>
+                     
+            <Button href={'/dashboard'}>Cancel</Button>
+          </Wrapper> 
         )
     }
 }
