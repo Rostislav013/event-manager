@@ -8,7 +8,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker, TimePicker } from '@materi
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import Button from '@material-ui/core/Button';
-import react from '../layout/react.png';
+
 
 const Title = styled.h1.attrs({
     className: 'h1',
@@ -19,9 +19,7 @@ const Wrapper = styled.div.attrs({
 })`
     width: 500px;
     margin: 0 30px;
-    
-    
-`
+ `
 
 const Label = styled.label`
     margin: 5px;
@@ -31,14 +29,8 @@ const InputText = styled.input.attrs({
     className: 'form-control',
 })`
     margin: 5px;
+    
 `
-/*
-const Button = styled.button.attrs({
-    className: `btn btn-primary`,
-})`
-    margin: 15px 15px 15px 5px;
-`*/
-
 
 
 class EventInsert extends Component {
@@ -62,13 +54,10 @@ componentDidMount = async () => {
       } 
     
      newList = newList.reverse().join(`/`);
-    
-
       //console.log(newList);
       this.setState({
           events: newList,
           isLoading: false,
-          booked: newList,
       })
   })
 };
@@ -84,7 +73,7 @@ constructor(props) {
         time: '',
         forTime: new Date(),
         userID: '',
-        booked: '',
+        mistake: '',
     }
 };
 
@@ -95,9 +84,9 @@ handleChangeInputName = async event => {
     this.setState({ name })
     const { user } = this.props.auth;
     const userID = user.id
-      this.setState({ userID})
-      const organizator = user.name
-      this.setState({ organizator })
+    this.setState({ userID})
+    const organizator = user.name
+    this.setState({ organizator })
     
 }
 
@@ -105,26 +94,12 @@ handleChangeInputDescription = async event => {
     const description = event.target.validity.valid
         ? event.target.value
         : this.state.description
-
     this.setState({ description })
 }
 
 handleChangeInputDate = async value => {
-
-  
-
-
-// transfer date to string n edit in our needed format
-  /*let dateToStr = value.toString()
-  let den = dateToStr.slice(4,10).split(" ").reverse().join(" ");
-  let year = dateToStr.slice(11,15);
-  let data = `${den} ${year}`;
-  let date = data;*/
-
   let date = value;
-
   this.setState({ date})
-  
 }
 
 handleChangeInputTime = async value => {
@@ -143,31 +118,30 @@ handleChangeInputTime = async value => {
 }
 
 
-/*
-handleChangeInputUser = async event => {
-    const { user } = this.props.auth;
-  const userID = user.id //event.target.value  // MUST MAKE IT USER:NAME
-   
-  
-    this.setState({ userID })
-}*/
-
 handleIncludeEvent = async () => {
-    const { name, organizator, description, date, time, forTime, userID, booked } = this.state
+    const { name, organizator, description, date, time, forTime, userID, mistake } = this.state
     const arrayTime = time.split('/')
-    const payload = { userID, name, organizator, description, date, time: arrayTime,booked,forTime}
+    const payload = { userID, name, organizator, description, date, time: arrayTime,forTime, mistake}
 
-    await api.insertEvent(payload).then(res => {
+    if(!name || !description || !date || !time) {
+      
+      this.setState({
+        mistake: 'Please, fill out all the fields',
+    })
+    } else {
+      await api.insertEvent(payload).then(res => {
         window.alert(`Event inserted successfully`)
         this.setState({
             name: '',
             organizator: '',
             description: '',
             //date: '',
-            //time: '',
+            mistake: '',
             userID: '',
         })
     })
+    }
+   
 }
 
 
@@ -175,7 +149,7 @@ handleIncludeEvent = async () => {
 render() {
     const { user } = this.props.auth;
     //console.log(user.id);
-    const { userID, name, organizator, description, date, time, forTime, booked } = this.state;
+    const { userID, name, organizator, description, date, time, forTime, mistake } = this.state;
     
 return (
       <div>
@@ -196,14 +170,15 @@ return (
         </div>
         <Wrapper>
         <Title>Create Event</Title>
-        <div>{booked}</div>
+        
 
-
+          <p style={{color:'red'}}>{mistake}</p>
           <Label>Name: </Label>
            <InputText
               type="text"
               value={name}
               onChange={this.handleChangeInputName}
+              required={true}
           />
 
           <Label>Description: </Label>
@@ -211,16 +186,15 @@ return (
               type="text"
               value={description}
               onChange={this.handleChangeInputDescription}
+              required={true}
           />
 
-         
-           <Grid  container
+          <Grid  container
                   direction="column"
                   justify="space-around"
                   alignItems="flex-start">
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
              
-
               <KeyboardDatePicker
                 margin="normal"
                 id="date-picker-dialog"
@@ -231,12 +205,16 @@ return (
                 KeyboardButtonProps={{
                 'aria-label': 'change date',
                   }} style={{ margin: '5px'  }}
+
+              
+
                 InputProps={{
                     disableUnderline: true,
                    }}
                 />
 
-                <TimePicker 
+
+              <TimePicker 
                   clearable
                   ampm={false}
                   //disableFuture
@@ -244,13 +222,17 @@ return (
                   minutesStep={5}
                   onChange={this.handleChangeInputTime}
                   label="Time" style={{ margin: '5px'  }}
+
+                
+              </MuiPickersUtilsProvider> 
+
                   InputProps={{
                     disableUnderline: true,
                    }}
                  />
             </MuiPickersUtilsProvider> 
-            </Grid>
 
+            </Grid>
 
             <Button onClick={this.handleIncludeEvent} style={{
               backgroundColor: 'black',
@@ -259,16 +241,9 @@ return (
                 }} >Add Event
             </Button>
                      
-            <Button href={'/dashboard'} style={{
-             
-              
-                }}>Cancel
-            </Button>
+            <Button href={'/dashboard'}>Cancel</Button>
           </Wrapper> 
-          <div  className="madeInReact">
-                    <img src={react} alt="Made in React" style={{position: 'absolute',right: '0', }} />
-            </div> 
-      </div>
+       </div>
     );
   }
 }
@@ -277,24 +252,10 @@ EventInsert.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
+
 const mapStateToProps = state => ({
   auth: state.auth
 });
-
-
-
-
-  
-   
-
-
-
-
-
-
-
-
-
 
 
 export default 
