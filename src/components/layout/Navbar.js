@@ -62,7 +62,7 @@ export default function ButtonAppBar() {
 
               <Link to="/login" >
               <Button className={classes.button}>
-              Log in
+              Account
             </Button>
             </Link>
 

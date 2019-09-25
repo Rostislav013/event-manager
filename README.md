@@ -7,7 +7,7 @@ User can add/edit only its own evetns.
 
 
 1. Create react app.
-2. Create server.
+2. Create server and cleint
 3. Run both server and client with npm run dev
 4. Connect db for user
 5. Connect db for events
@@ -17,3 +17,6 @@ User can add/edit only its own evetns.
 9. Ability to create an event after authentication
 10. Ability to see event list after authentication
 11. Ability edit and delete events after authentication
+12. Show events sorted by date
+
+
