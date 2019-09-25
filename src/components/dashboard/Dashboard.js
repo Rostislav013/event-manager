@@ -6,10 +6,7 @@ import { Link } from "react-router-dom";
 import ReactTable from 'react-table';
 import api from '../../e-api/api';
 import styled from 'styled-components';
-
 import Button from '@material-ui/core/Button';
-
-
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -30,28 +27,17 @@ class Dashboard extends Component {
 
 componentDidMount = async () => {
     this.setState({ isLoading: true })
-    const { user } = this.props.auth; // dont delete
-    
-   /*----checking whats user has------  
-        const data = this.props.auth;
-        console.log(typeof data);
-        let newAuth = [];
-        for (var key in data) {
-        newAuth.push(data[key]);
-        console.log(newAuth);
-      }*/
-    
+    const { user } = this.props.auth; 
+     
     await api.getAllEvents().then(events => {
-        let her = events.data.data
-        
+        let userEvent = events.data.data
+       
         //show only the user's events
         let newList = [];
-        for(let i = 0; i < her.length; i++){
-            if(her[i].userID === user.id) {
-                newList.push(her[i]);
-                //console.log(newList);
+        for(let i = 0; i < userEvent.length; i++){
+            if(userEvent[i].userID === user.id) {
+                newList.push(userEvent[i]);
             }
-            
         } 
 
         this.setState({
@@ -64,34 +50,20 @@ componentDidMount = async () => {
   
 render() {
     const { user } = this.props.auth;
-    //console.log(user.name);
     const { events, isLoading } = this.state
-        //console.log('TCL: MoviesList -> render -> events', events) 
-          
-       const columns = [
-            /*{
-                Header: 'ID',
-                accessor: '_id',
-                filterable: true,
-                
-            },*/
-            /*{
-                Header: 'Organizator',
-                accessor: 'organizator',
-            },*/
-            
+    const columns = [
             {
                 Header:'Name',
                 accessor: 'name',
                 filterable: true,
-                style: { 'white-space': 'unset' } // allow for words wrap inside only this cell
+                style: { 'whiteSpace': 'unset' } // allow for words wrap inside only this cell
             },
             {
                 Header: 'Description',
                 accessor: 'description',
                 filterable: true,
                 minWidth: 500,
-                style: { 'white-space': 'unset' } // allow for words wrap inside only this cell
+                style: { 'whiteSpace': 'unset' } // allow for words wrap inside only this cell
             },
             {
                 Header: 'Date',
@@ -102,7 +74,6 @@ render() {
             {
                 Header: 'Time',
                 accessor: 'time',
-                //Cell: props => <span>{props.value.join(' / ')}</span>,
             },
             
             {
@@ -134,11 +105,9 @@ render() {
             showTable = false
         }
 
-
 return (
       <div>
-        
-        <div className="row">
+       <div className="row">
             <div className="col s12 center-align">
                 <h4>
                     <b>Hey there,</b> {user.name.split(" ")[0]}
@@ -150,7 +119,6 @@ return (
                     }}      onClick={this.onLogoutClick}> 
                     Logout
                 </Button>
-
 
                 <Link to={`dashboard/events/create` } className="nav-link" style={{
                     borderRadius: "3px",
@@ -246,12 +214,9 @@ class DeleteEvent extends Component {
     }
 }
 
-
 export default 
  
   connect(
     mapStateToProps,
     { logoutUser }
   )(Dashboard);
-
-// Dashboard;
