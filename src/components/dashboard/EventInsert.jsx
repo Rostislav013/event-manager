@@ -190,7 +190,7 @@ return (
                     width: "120px", 
                     }}      onClick={this.onLogoutClick}> 
                     Logout
-              </Button>
+            </Button>
 
           </div>
         </div>
@@ -231,6 +231,9 @@ return (
                 KeyboardButtonProps={{
                 'aria-label': 'change date',
                   }} style={{ margin: '5px'  }}
+                InputProps={{
+                    disableUnderline: true,
+                   }}
                 />
 
                 <TimePicker 
@@ -241,14 +244,11 @@ return (
                   minutesStep={5}
                   onChange={this.handleChangeInputTime}
                   label="Time" style={{ margin: '5px'  }}
+                  InputProps={{
+                    disableUnderline: true,
+                   }}
                  />
-
-                
-
-
-
             </MuiPickersUtilsProvider> 
-
             </Grid>
 
 
