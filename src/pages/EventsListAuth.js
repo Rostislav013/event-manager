@@ -95,7 +95,6 @@ class EventsList extends Component {
             {
                 Header: 'Date',
                 accessor: 'date',
-                filterable: true,
             },
             
             {

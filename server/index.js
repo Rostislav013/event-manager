@@ -29,20 +29,20 @@ mongoose
     .then(() => console.log('MongoDB connected, relax, bro!'))
     .catch(err => console.log("Hei maan, I cannot connect", err));
 
-    const port = process.env.PORT || 3001; //process.env.port is Heroku's port if app is deploed there
+const port = process.env.PORT || 3001; //process.env.port is Heroku's port if app is deploed there
 
 
 
 
     // Passport middleware
-    app.use(passport.initialize());
+app.use(passport.initialize());
 
     // Passport config
-    require("./config/passport")(passport);
+require("./config/passport")(passport);
 
     // Routes
-    app.use("/api/users", users);
+app.use("/api/users", users);
 
-    app.use('/api', eventRouter); // for events
+app.use('/api', eventRouter); // for events
 
-    app.listen(port, () => console.log(`Server up n running on port ${port}! That is sooo cool!`));
+app.listen(port, () => console.log(`Server up n running on port ${port}! That is sooo cool!`));

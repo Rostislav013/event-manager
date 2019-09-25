@@ -52,7 +52,6 @@ class EventsList extends Component {
             {
                 Header: 'Date',
                 accessor: 'date',
-                filterable: true,
                 Cell: props => props.value.slice(8,10) + '.' + props.value.slice(5,7) + '.' + props.value.slice(0,4) // here can show data my needed way
             },
             {
@@ -62,7 +61,7 @@ class EventsList extends Component {
             },
         ]
 
-        let showTable = true
+        let showTable = true;
         if (!events.length) {
             showTable = false
         }
@@ -82,7 +81,6 @@ class EventsList extends Component {
                         />
                     )}
                 </Wrapper>
-            
             </div>
         )
     }

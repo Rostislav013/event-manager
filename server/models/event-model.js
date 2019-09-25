@@ -15,5 +15,5 @@ const Event = new Schema(
 )
 
 
-//module.exports = mongoose.model('users', Movie)
-module.exports = mongoose.model('events', Event)  //Added to test. Here looks like i send the needed collection
+
+module.exports = mongoose.model('events', Event)  
