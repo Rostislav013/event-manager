@@ -20,7 +20,20 @@ app.use(cors()); //for events
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, '../build')));
+
 app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build', 'index.html'))
+});
+app.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build', 'index.html'))
+});
+app.get('/dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build', 'index.html'))
+});
+app.get('/events/update/:id', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build', 'index.html'))
+});
+app.get('/events/list', (req, res) => {
     res.sendFile(path.join(__dirname, '../build', 'index.html'))
 });
 
