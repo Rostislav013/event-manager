@@ -14,7 +14,7 @@
 /build
 
 # misc
-./server/config/dev_keys.js
+/server/config/dev_keys.js
 .env
 .DS_Store
 .env.local
