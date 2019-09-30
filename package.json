@@ -35,8 +35,8 @@
     "validator": "^11.1.0"
   },
   "scripts": {
-    "start": "node server/index.js",
-    "heroku-postbuild": "npm run build",
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
