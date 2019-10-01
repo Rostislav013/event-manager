@@ -21,7 +21,7 @@ const useStyles = makeStyles (theme => ({
     marginTop:'10px',
   },
   title: {
-      marginTop:'60px',
+      marginTop:'30px',
       marginBottom:'40px',
   },
   h5: {
@@ -31,6 +31,11 @@ const useStyles = makeStyles (theme => ({
   secondContainer: {
     float:'left'
   },
+  shortdescr: {
+    fontSize:'16px', 
+    color:'black',
+    color: theme.palette.text.secondary
+  }
 }));
 
 export default function Types() {
@@ -43,19 +48,18 @@ export default function Types() {
     <CssBaseline />
     <Container maxWidth="md">
       <div className={classes.root}>
-    <Grid container spacing={3}>
+    <Grid container spacing={6}>
       <Grid item xs={12}>
     <Typography variant="h3" gutterBottom className={classes.title}>
     EventID. Simple event management
     </Typography>
+    <Typography variant="p" gutterBottom className={classes.shortdescr}>
+        Companies and communities can use EventID for their internal events and sharing sessions.
+      </Typography>
       </Grid>
       <Grid item xs={12} sm={6}>
-      <Typography variant="p" gutterBottom style={{fontSize:'19px'}}>
-        Companies and communities can use EventID<br />for their internal events and sharing sessions.
-      </Typography>
         <Paper className={classes.paper}>
             <div>
-           
             <Typography variant="body1" gutterBottom>
             <h6 style={{color:'black'}}>With EventID it is easy to</h6>
             <ul>
@@ -76,15 +80,21 @@ export default function Types() {
           title="people"
         />
       </Grid>
-      <Grid item xs={6}>
-          <Paper className={classes.paper}>
-          <Typography variant="p" gutterBottom style={{fontSize:'19px'}}>
-      How to use our App
-      </Typography>
+      <Grid item xs={12}>
+        <Paper className={classes.paper}>
+      <Typography variant="body1" gutterBottom>
+      <h6 style={{color:'black'}}>How to use EventID</h6>
       <Typography variant="body1" gutterBottom className={classes.howto}>
-        Our App is very easy to use!<br />
-        To create an event you have to go to <b>Account</b>, Login if you already have an accout or press <b>Register</b>, fill all the fiedls and Sing in.
-        When you are logged in you can create an event and see it in you <b>Account</b>. When you are logged in you can also Edit and Delete events what you created.
+        <ol>
+          <li>Go to <b>Account</b> to create an event</li>
+          <li>Login if you already have an accout or press <b>Register</b></li>
+          <li>Fill all the fiedls and <b>Sing in</b></li>
+          <li>When you are logged in you can create an event and see it in you <b>Account</b></li>
+          <li>When you are logged in you can also <b>Edit</b> and <b>Delete</b> events what you created</li>
+          <li>Go to <b>Event List</b> to see all the upcoming events</li>
+          <li>Feel free to go to <b>About</b> page and leave a feedback or contact the developers via contact form</li>
+        </ol>
+      </Typography>
       </Typography>
           </Paper>
           
