@@ -27,8 +27,9 @@ class EventsList extends Component {
             let newList = [];
             for(let i = 0; i < events.data.data.length; i++){
                 
-                if(Date.parse(events.data.data[i].date)-Date.parse(new Date())>0) {
+                if((Date.parse(events.data.data[i].date) - Date.parse(new Date())) > -6800000  ) {
                     newList.push(events.data.data[i]); // pushing if it is an upcoming event
+                    console.log(Date.parse(events.data.data[i].date)-Date.parse(new Date()));
                 }
             } 
             //console.log(newList)
