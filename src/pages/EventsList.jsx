@@ -22,18 +22,16 @@ class EventsList extends Component {
         this.setState({ isLoading: true })
         await api.getAllEvents().then(events => {
             //console.log(events.data.data)
-          
-       
+                
             //show only upcoming events
             let newList = [];
-         
             for(let i = 0; i < events.data.data.length; i++){
                 
                 if(Date.parse(events.data.data[i].date)-Date.parse(new Date())>0) {
                     newList.push(events.data.data[i]); // pushing if it is an upcoming event
                 }
             } 
-            console.log(newList)
+            //console.log(newList)
             this.setState({
                 events: newList.sort(function(a,b){return   new Date(a.date) - new Date(b.date); }), //sort by dates
                 isLoading: false,
@@ -59,7 +57,7 @@ class EventsList extends Component {
                 accessor: 'description',
                 filterable: true,
                 minWidth: 300,
-                style: { 'whiteSpace': 'unset' } // allow for words wrap inside only this cell
+                style: { 'whiteSpace': 'unset' } // allow for all words wrap inside only this cell
             },
             {
                 Header: 'Date',
@@ -69,7 +67,7 @@ class EventsList extends Component {
             {
                 Header: 'Time',
                 accessor: 'time',
-                Cell: props => <span>{props.value.join(' / ')}</span>,
+                
             },
         ]
 
