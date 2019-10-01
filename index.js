@@ -40,7 +40,7 @@ app.get('/events/list', (req, res) => {
 //DB Config
 const db = require('./config/keys').mongoURL;
 
-require('dotenv').config()
+// require('dotenv').config()
 
 //Connect to MongoDB
 mongoose
