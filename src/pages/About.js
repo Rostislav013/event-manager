@@ -18,6 +18,12 @@ const useStyles = makeStyles (theme => ({
     padding: theme.spacing(2),
     marginLeft: '10px',
     color: theme.palette.text.secondary,
+    marginTop:'40px',
+  },
+  paper1: {
+    padding: theme.spacing(2),
+    marginLeft: '10px',
+    color: theme.palette.text.secondary,
     marginTop:'10px',
   },
   title: {
@@ -48,7 +54,7 @@ export default function Types() {
     <CssBaseline />
     <Container maxWidth="md">
       <div className={classes.root}>
-    <Grid container spacing={6}>
+    <Grid container spacing={3}>
       <Grid item xs={12}>
     <Typography variant="h3" gutterBottom className={classes.title}>
     EventID. Simple event management
@@ -66,7 +72,6 @@ export default function Types() {
               <li><CheckIcon />Create events</li>
               <li><CheckIcon />Edit events</li>
               <li><CheckIcon />Delete events</li>
-         
             </ul>
             </Typography>
             </div>
@@ -81,7 +86,7 @@ export default function Types() {
         />
       </Grid>
       <Grid item xs={12}>
-        <Paper className={classes.paper}>
+        <Paper className={classes.paper1}>
       <Typography variant="body1" gutterBottom>
       <h6 style={{color:'black'}}>How to use EventID</h6>
       <Typography variant="body1" gutterBottom className={classes.howto}>
@@ -89,10 +94,12 @@ export default function Types() {
           <li>Go to <b>Account</b> to create an event</li>
           <li>Login if you already have an accout or press <b>Register</b></li>
           <li>Fill all the fiedls and <b>Sing in</b></li>
-          <li>When you are logged in you can create an event and see it in you <b>Account</b></li>
-          <li>When you are logged in you can also <b>Edit</b> and <b>Delete</b> events what you created</li>
+          <li>Create an event (name, description, date)</li>
+          <li>See all your events in the <b>Account</b></li>
+          <li>Stay logged in to <b>Edit</b> and <b>Delete</b> your events</li>
           <li>Go to <b>Event List</b> to see all the upcoming events</li>
-          <li>Feel free to go to <b>About</b> page and leave a feedback or contact the developers via contact form</li>
+          <li>Search for events by name, organizer or description</li>
+          <li>Go to <b>About</b> page and leave a feedback :)</li>
         </ol>
       </Typography>
       </Typography>
