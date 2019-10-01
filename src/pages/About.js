@@ -16,7 +16,7 @@ const useStyles = makeStyles (theme => ({
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: 'center',
+    marginLeft: '10px',
     color: theme.palette.text.secondary
   },
   title: {
@@ -29,7 +29,7 @@ const useStyles = makeStyles (theme => ({
   },
   secondContainer: {
     float:'left'
-  }
+  },
 }));
 
 export default function Types() {
@@ -49,16 +49,21 @@ export default function Types() {
     </Typography>
       </Grid>
       <Grid item xs={12} sm={6}>
+      <Typography variant="body1" gutterBottom>
+        EventID is created for companies and communities internal use. With EventID you can
+      </Typography>
         <Paper className={classes.paper}>
             <div>
-            <CheckIcon />
+           
             <Typography variant="body1" gutterBottom>
-            Create events
+            <ul>
+              <li><CheckIcon />Create events for sharing sessions</li>
+              <li><CheckIcon />Edit events</li>
+              <li><CheckIcon />Delete events</li>
+         
+            </ul>
             </Typography>
             </div>
-            <CheckIcon />
-            <CheckIcon />
-            <CheckIcon />
         </Paper>
       </Grid>
       <Grid item xs={12} sm={6}>
@@ -75,8 +80,9 @@ export default function Types() {
       <Typography variant="h5" gutterBottom className={classes.h5}>
         How to use our App
       </Typography>
+     
    
-      <Typography variant="body1" gutterBottom>
+      <Typography variant="body1" gutterBottom className={classes.howto}>
         Our App is very easy to use! You have two options to choose - to see all upcoming events OR to register and manage events by yoursefl.
       </Typography>
 </Container>   
