@@ -13,6 +13,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import EventInsert from "./components/dashboard/EventInsert";
 import EventUpdate from "./components/dashboard/EventUpdate";
 import {EventsList}  from './pages';
+import About from './pages/About';
 
 
 // Check for token to keep an user logged in
@@ -39,7 +40,7 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route path="/events/list" exact component={EventsList} />  
-            {/*Valja, privet, add here <Route, remember to import*/}
+            <Route path="/about" component={About} />
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <PrivateRoute path="/dashboard/events/create" exact component={EventInsert} />

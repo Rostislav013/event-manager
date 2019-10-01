@@ -257,5 +257,3 @@ export default
     mapStateToProps,
     { logoutUser }
   )(EventInsert);
-
-
