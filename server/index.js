@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const cors = require('cors')
 const passport = require("passport");
 const users = require("./routes/api/users");
+const nodeMailer = require('nodemailer');
+
 
 const eventRouter = require('./routes/event-router'); //for events
 

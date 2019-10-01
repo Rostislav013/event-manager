@@ -25,7 +25,7 @@ const useStyles = makeStyles (theme => ({
   },
   h5: {
       marginTop: '40px',
-      
+
   },
   secondContainer: {
     float:'left'
@@ -37,7 +37,7 @@ export default function Types() {
 
   return (
     <div>
-   
+
     <React.Fragment>
     <CssBaseline />
     <Container maxWidth="md">
@@ -54,13 +54,13 @@ export default function Types() {
       </Typography>
         <Paper className={classes.paper}>
             <div>
-           
+
             <Typography variant="body1" gutterBottom>
             <ul>
               <li><CheckIcon />Create events for sharing sessions</li>
               <li><CheckIcon />Edit events</li>
               <li><CheckIcon />Delete events</li>
-         
+
             </ul>
             </Typography>
             </div>
@@ -80,12 +80,14 @@ export default function Types() {
       <Typography variant="h5" gutterBottom className={classes.h5}>
         How to use our App
       </Typography>
-     
-   
+
+
       <Typography variant="body1" gutterBottom className={classes.howto}>
         Our App is very easy to use! You have two options to choose - to see all upcoming events OR to register and manage events by yoursefl.
       </Typography>
-</Container>   
+      <Typography>
+      </Typography>
+</Container>
 </Container>
   </React.Fragment>
   </div>
