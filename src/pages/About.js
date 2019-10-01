@@ -17,7 +17,8 @@ const useStyles = makeStyles (theme => ({
   paper: {
     padding: theme.spacing(2),
     marginLeft: '10px',
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
+    marginTop:'10px',
   },
   title: {
       marginTop:'60px',
@@ -49,15 +50,16 @@ export default function Types() {
     </Typography>
       </Grid>
       <Grid item xs={12} sm={6}>
-      <Typography variant="body1" gutterBottom>
-        EventID is created for companies and communities internal use. With EventID you can
+      <Typography variant="p" gutterBottom style={{fontSize:'19px'}}>
+        Companies and communities can use EventID<br />for their internal events and sharing sessions.
       </Typography>
         <Paper className={classes.paper}>
             <div>
            
             <Typography variant="body1" gutterBottom>
+            <h6 style={{color:'black'}}>With EventID it is easy to</h6>
             <ul>
-              <li><CheckIcon />Create events for sharing sessions</li>
+              <li><CheckIcon />Create events</li>
               <li><CheckIcon />Edit events</li>
               <li><CheckIcon />Delete events</li>
          
@@ -74,18 +76,21 @@ export default function Types() {
           title="people"
         />
       </Grid>
-    </Grid>
-  </div>
-  <Container maxWidth="sm" className={classes.secondContainer}>
-      <Typography variant="h5" gutterBottom className={classes.h5}>
-        How to use our App
+      <Grid item xs={6}>
+          <Paper className={classes.paper}>
+          <Typography variant="p" gutterBottom style={{fontSize:'19px'}}>
+      How to use our App
       </Typography>
-     
-   
       <Typography variant="body1" gutterBottom className={classes.howto}>
-        Our App is very easy to use! You have two options to choose - to see all upcoming events OR to register and manage events by yoursefl.
+        Our App is very easy to use!<br />
+        To create an event you have to go to <b>Account</b>, Login if you already have an accout or press <b>Register</b>, fill all the fiedls and Sing in.
+        When you are logged in you can create an event and see it in you <b>Account</b>. When you are logged in you can also Edit and Delete events what you created.
       </Typography>
-</Container>   
+          </Paper>
+          
+        </Grid>
+    </Grid>
+  </div>  
 </Container>
   </React.Fragment>
   </div>
