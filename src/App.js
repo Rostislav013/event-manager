@@ -39,7 +39,7 @@ class App extends Component {
             <Route exact path="/" component={EventsList} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
-            <Route path="/events/list" exact component={EventsList} />  
+            <Route path="/events/list" exact component={EventsList} />
             <Route path="/about" component={About} />
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
@@ -53,7 +53,7 @@ class App extends Component {
           </div>
         </Router>
       </Provider>
-      
+
     );
   }
 }

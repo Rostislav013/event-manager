@@ -86,6 +86,32 @@ export default function Types() {
         Our App is very easy to use! You have two options to choose - to see all upcoming events OR to register and manage events by yoursefl.
       </Typography>
       <Typography>
+      <h3>Email Us</h3>
+      <form method="POST" action="/send">
+        <p>
+          <label>Name</label>
+          <input type="text" name="name"></input>
+        </p>
+        <p>
+          <label>Company</label>
+          <input type="text" name="company"></input>
+        </p>
+        <p>
+          <label>Email Address</label>
+          <input type="email" name="email"></input>
+        </p>
+        <p>
+          <label>Phone Number</label>
+          <input type="text" name="phone"></input>
+        </p>
+        <p class="full">
+          <label>Message</label>
+          <textarea name="message" rows="5"></textarea>
+        </p>
+        <p class="full">
+          <button type="submit">Submit</button>
+        </p>
+      </form>
       </Typography>
 </Container>
 </Container>
