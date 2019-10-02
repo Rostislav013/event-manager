@@ -8,6 +8,7 @@ import api from '../../e-api/api';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
+
 class Dashboard extends Component {
   onLogoutClick = e => {
     e.preventDefault();
@@ -107,6 +108,7 @@ render() {
 
 return (
       <div>
+         
        <div className="row">
             <div className="col s12 center-align">
                 <h4>
