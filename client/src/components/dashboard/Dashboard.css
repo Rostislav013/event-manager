@@ -1,5 +1,14 @@
 .Container {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+
+@media screen and (max-width: 600px) {
+    .first {
+        position: absolute;
+        left: 5vw;
+    }
 }

@@ -116,7 +116,7 @@ return (
                     <b>Hey there,</b> {user.name.split(" ")[0]}
                 </h4>
                 <div className='Container'>
-                    <div>
+                    <div className='first'>
                         <Button variant="contained" color="primary" style={{
                             backgroundColor: 'black', 
                             width: "120px", 
@@ -125,7 +125,7 @@ return (
                         </Button>
                     </div>
                 
-                    <div> 
+                    <div className='second'> 
                         <Link to={`dashboard/events/create` } className="nav-link" style={{
                             borderRadius: "3px",
                             letterSpacing: "1.5px",
