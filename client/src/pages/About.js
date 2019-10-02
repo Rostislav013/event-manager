@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-// import about1 from './img/about1.jpg';
+import about1 from './img/about1.jpg';
 import CardMedia from '@material-ui/core/CardMedia';
 import CheckIcon from '@material-ui/icons/Check';
 
@@ -67,12 +67,12 @@ export default function Types() {
         </Paper>
       </Grid>
       <Grid item xs={12} sm={6}>
-      {/* <CardMedia
+      <CardMedia
           component="img"
           className={classes.media}
           image={about1}
           title="people"
-        /> */}
+        />
       </Grid>
     </Grid>
   </div>

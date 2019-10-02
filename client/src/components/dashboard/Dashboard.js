@@ -7,6 +7,9 @@ import ReactTable from 'react-table';
 import api from '../../e-api/api';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
+// import Grid from '@material-ui/core/Grid';
+import './Dashboard.css';
+
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -112,27 +115,32 @@ return (
                 <h4>
                     <b>Hey there,</b> {user.name.split(" ")[0]}
                 </h4>
-
-                <Button variant="contained" color="primary" style={{
-                    backgroundColor: 'black', 
-                    width: "120px", 
-                    }}      onClick={this.onLogoutClick}> 
-                    Logout
-                </Button>
-
-                <Link to={`dashboard/events/create` } className="nav-link" style={{
-                    borderRadius: "3px",
-                    letterSpacing: "1.5px",
-                    padding: "5px",
-                    marginLeft: "200px"
-                    }}>
-                    <Button variant="contained" color="primary"  style={{
-                        backgroundColor: 'black', 
-                        width: "140px", 
-                        }}> 
-                        Create event
-                    </Button>
-                </Link>
+                <div className='Container'>
+                    <div>
+                        <Button variant="contained" color="primary" style={{
+                            backgroundColor: 'black', 
+                            width: "120px", 
+                            }}      onClick={this.onLogoutClick}> 
+                            Logout
+                        </Button>
+                    </div>
+                
+                    <div> 
+                        <Link to={`dashboard/events/create` } className="nav-link" style={{
+                            borderRadius: "3px",
+                            letterSpacing: "1.5px",
+                            padding: "5px",
+                            marginLeft: "200px"
+                            }}>
+                            <Button variant="contained" color="primary"  style={{
+                                backgroundColor: 'black', 
+                                width: "140px", 
+                                }}> 
+                                Create event
+                            </Button>
+                        </Link>
+                    </div>
+                </div>
             </div>
         </div>
 
