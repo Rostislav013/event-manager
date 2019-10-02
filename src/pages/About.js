@@ -40,7 +40,7 @@ const useStyles = makeStyles (theme => ({
     float:'left'
   },
   shortdescr: {
-    fontSize:'16px', 
+    fontSize:'16px',
     color:'black',
     color: theme.palette.text.secondary
   }
@@ -103,39 +103,41 @@ export default function Types() {
             <li>Go to <b>About</b> page and leave a feedback :)</li>
           </ol>
         </Typography>
-  <Typography>
-      <h3>Email Us</h3>
-      <form method="POST" action="/send" id='client'>
-        <p>
-          <label>Name</label>
-          <input type="text" name="name"></input>
-        </p>
-        <p>
-          <label>Company</label>
-          <input type="text" name="company"></input>
-        </p>
-        <p>
-          <label>Email Address</label>
-          <input type="email" name="email"></input>
-        </p>
-        <p>
-          <label>Phone Number</label>
-          <input type="text" name="phone"></input>
-        </p>
-        <p class="full">
-          <label>Message</label>
-          <textarea name="message" rows="5"></textarea>
-        </p>
-        <p class="full">
-          <button type="submit" value="reset">Submit</button>
-        </p>
-      </form>
-      </Typography>
         </Typography>
-        </Paper>   
+        </Paper>
+        <Paper className={classes.paper1}>
+        <Typography>
+            <h6 style={{color:'black'}}>Email Us</h6>
+            <form method="POST" action="/send" id='client'>
+              <p>
+                <label>Name</label>
+                <input type="text" name="name"></input>
+              </p>
+              <p>
+                <label>Company</label>
+                <input type="text" name="company"></input>
+              </p>
+              <p>
+                <label>Email Address</label>
+                <input type="email" name="email"></input>
+              </p>
+              <p>
+                <label>Phone Number</label>
+                <input type="text" name="phone"></input>
+              </p>
+              <p class="full">
+                <label>Message</label>
+                <textarea name="message" rows="5"></textarea>
+              </p>
+              <p class="full">
+                <button type="submit" value="reset">Submit</button>
+              </p>
+            </form>
+            </Typography>
+        </Paper>
       </Grid>
       </Grid>
-    </div>  
+    </div>
   </Container>
   </React.Fragment>
   </div>
