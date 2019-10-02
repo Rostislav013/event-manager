@@ -8,7 +8,6 @@ const nodemailer = require('nodemailer');
 const path = require('path');
 
 
-
 const eventRouter = require('./routes/event-router'); //for events
 
 const app = express();
@@ -100,8 +99,9 @@ app.post('/send', (req, res) => {
       console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
       // res.render('/send', {layout: false, msg:'Email has been sent'});
-      res.send({msg: 'Mail has been sent!'});
-      //res.sendFile(path.join(__dirname, '../src/pages', 'About.js'))
+      // res.send({msg: 'Mail has been sent!'});
+      // res.send(`<a href='localhost:3000/about' target='_self'>Back</a>`)
+      res.redirect('about');
   });
   });
 

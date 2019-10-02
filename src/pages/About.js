@@ -87,7 +87,7 @@ export default function Types() {
       </Typography>
       <Typography>
       <h3>Email Us</h3>
-      <form method="POST" action="/send">
+      <form method="POST" action="/send" id='client'>
         <p>
           <label>Name</label>
           <input type="text" name="name"></input>
@@ -109,7 +109,7 @@ export default function Types() {
           <textarea name="message" rows="5"></textarea>
         </p>
         <p class="full">
-          <button type="submit">Submit</button>
+          <button type="submit" value="reset">Submit</button>
         </p>
       </form>
       </Typography>
