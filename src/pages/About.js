@@ -11,8 +11,9 @@ import CheckIcon from '@material-ui/icons/Check';
 
 const useStyles = makeStyles (theme => ({
   root: {
-    width: '100%',
+    //width: '100%',
     flexGrow: 1,
+    marginBottom: '90px',
   },
   paper: {
     padding: theme.spacing(2),

@@ -83,6 +83,9 @@ class EventsList extends Component {
                 <Wrapper>
                     {showTable && (
                         <ReactTable
+                        style={{
+                            marginBottom: '55px',
+                        }}
                         data={events}
                         columns={columns}
                         loading={isLoading}
