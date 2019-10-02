@@ -47,6 +47,7 @@ class EventsList extends Component {
                 Header: 'Name',
                 accessor: 'name',
                 filterable: true,
+                style: { 'whiteSpace': 'unset' },
             },
             {
                 Header: 'Organizer',
