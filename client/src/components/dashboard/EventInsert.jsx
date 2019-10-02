@@ -5,9 +5,10 @@ import { logoutUser } from "../../actions/authActions";
 import api from '../../e-api/api'
 import styled from 'styled-components'
 import { MuiPickersUtilsProvider, KeyboardDatePicker, TimePicker } from '@material-ui/pickers';
+import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
+
 
 
 const Title = styled.h1.attrs({
@@ -257,5 +258,3 @@ export default
     mapStateToProps,
     { logoutUser }
   )(EventInsert);
-
-
