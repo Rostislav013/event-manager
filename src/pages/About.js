@@ -100,7 +100,7 @@ export default function Types() {
             <li>Stay logged in to <b>Edit</b> and <b>Delete</b> your events</li>
             <li>Go to <b>Event List</b> to see all the upcoming events</li>
             <li>Search for events by name, organizer or description</li>
-            <li>Go to <b>About</b> page and leave a feedback :)</li>
+            <li>Use the form below to send us a feedback :)</li>
           </ol>
         </Typography>
   <Typography>

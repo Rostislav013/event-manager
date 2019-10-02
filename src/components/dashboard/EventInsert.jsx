@@ -231,11 +231,13 @@ return (
             <Button onClick={this.handleIncludeEvent} style={{
               backgroundColor: 'black',
               color: 'white',
-              margin: '50px 10px',        
+              margin: '50px 10px 105px 10px',        
                 }} >Add Event
             </Button>
                      
-            <Button href={'/dashboard'}>Cancel</Button>
+            <Button href={'/dashboard'} style={{
+                    margin: '50px 10px 105px 10px',        
+                }}>Cancel</Button>
           </Wrapper> 
        </div>
     );
