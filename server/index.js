@@ -73,8 +73,8 @@ app.post('/send', (req, res) => {
     secure: true, // true for 465, false for other ports
     service: "Gmail",
     auth: {
-        user: 'noreply.evmngr@gmail.com', // generated ethereal user
-        pass: '!234Qwer'  // generated ethereal password
+        user: process.env.emaillog, // generated ethereal user
+        pass: process.env.emailpass  // generated ethereal password
     },
     tls:{
       rejectUnauthorized:false
