@@ -28,15 +28,11 @@ export default function BottomAppBar() {
 
   return (
     <React.Fragment>
-     
-      
-      <AppBar position="fixed" color="primary" className={classes.appBar}>
-
-      <Typography className={classes.typo}>
-        Made by <a target="_blank" rel="noopener noreferrer" href='https://www.linkedin.com/in/anastasia-aleksandrova-46010974/'>Anastasia Aleksandrova</a>, <a target="_blank" rel="noopener noreferrer" href='https://www.linkedin.com/in/valentina-jakobson/'>Valentina Jakobson</a>, <a target="_blank" rel="noopener noreferrer" href='https://www.linkedin.com/in/rostislavpetrenko/'>Rostislav Petrenko</a>, <a target="_blank" rel="noopener noreferrer" href='https://www.linkedin.com/in/veselovskii/'>Konstantin Veselovskii</a>.    
-      </Typography>  
-     
-      </AppBar>
+        <AppBar position="fixed" color="primary" className={classes.appBar}>
+            <Typography className={classes.typo}>
+                Made by <a target="_blank" rel="noopener noreferrer" href='https://www.linkedin.com/in/anastasia-aleksandrova-46010974/'>Anastasia Aleksandrova</a>, <a target="_blank" rel="noopener noreferrer" href='https://www.linkedin.com/in/valentina-jakobson/'>Valentina Jakobson</a>, <a target="_blank" rel="noopener noreferrer" href='https://www.linkedin.com/in/rostislavpetrenko/'>Rostislav Petrenko</a>, <a target="_blank" rel="noopener noreferrer" href='https://www.linkedin.com/in/veselovskii/'>Konstantin Veselovskii</a>.    
+            </Typography>  
+        </AppBar>
     </React.Fragment>
   );
 }
