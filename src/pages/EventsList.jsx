@@ -4,6 +4,7 @@ import api from '../e-api/api';
 import styled from 'styled-components';
 import 'react-table/react-table.css';
 
+
 const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
 `
@@ -27,8 +28,9 @@ class EventsList extends Component {
             let newList = [];
             for(let i = 0; i < events.data.data.length; i++){
                 
-                if(Date.parse(events.data.data[i].date)-Date.parse(new Date())>0) {
+                if((Date.parse(events.data.data[i].date) - Date.parse(new Date())) > -6800000  ) {
                     newList.push(events.data.data[i]); // pushing if it is an upcoming event
+                    console.log(Date.parse(events.data.data[i].date)-Date.parse(new Date()));
                 }
             } 
             //console.log(newList)
@@ -78,10 +80,14 @@ class EventsList extends Component {
 
         return (
             <div>
+               
                 <h3 style={{textAlign: 'center'}}>Choose wisely where to go</h3>
                 <Wrapper>
                     {showTable && (
                         <ReactTable
+                        style={{
+                            marginBottom: '55px',
+                        }}
                         data={events}
                         columns={columns}
                         loading={isLoading}

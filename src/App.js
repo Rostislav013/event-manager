@@ -14,6 +14,7 @@ import EventInsert from "./components/dashboard/EventInsert";
 import EventUpdate from "./components/dashboard/EventUpdate";
 import {EventsList}  from './pages';
 import About from './pages/About';
+import Footer from "./pages/Footer.js";
 
 
 // Check for token to keep an user logged in
@@ -50,10 +51,11 @@ class App extends Component {
                     component={EventUpdate}
                 />
             </Switch>
+           
           </div>
+          <Footer />
         </Router>
       </Provider>
-
     );
   }
 }
