@@ -140,6 +140,7 @@ return (
                 {showTable && (
                     <ReactTable
                     style={{
+                        marginBottom: '55px',
                         width: "100%",
                         borderRadius: "3px",
                         letterSpacing: "1.5px",  
