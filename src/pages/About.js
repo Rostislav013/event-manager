@@ -17,10 +17,17 @@ const useStyles = makeStyles (theme => ({
   paper: {
     padding: theme.spacing(2),
     marginLeft: '10px',
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
+    marginTop:'40px',
+  },
+  paper1: {
+    padding: theme.spacing(2),
+    marginLeft: '10px',
+    color: theme.palette.text.secondary,
+    marginTop:'10px',
   },
   title: {
-      marginTop:'60px',
+      marginTop:'30px',
       marginBottom:'40px',
   },
   h5: {
@@ -30,6 +37,11 @@ const useStyles = makeStyles (theme => ({
   secondContainer: {
     float:'left'
   },
+  shortdescr: {
+    fontSize:'16px', 
+    color:'black',
+    color: theme.palette.text.secondary
+  }
 }));
 
 export default function Types() {
@@ -37,56 +49,64 @@ export default function Types() {
 
   return (
     <div>
-   
     <React.Fragment>
     <CssBaseline />
     <Container maxWidth="md">
       <div className={classes.root}>
-    <Grid container spacing={3}>
+     <Grid container spacing={3}>
       <Grid item xs={12}>
-    <Typography variant="h3" gutterBottom className={classes.title}>
-    EventID. Simple event management
-    </Typography>
+        <Typography variant="h3" gutterBottom className={classes.title}>
+          EventID. Simple event management
+        </Typography>
+       <Typography variant="p" gutterBottom className={classes.shortdescr}>
+          Companies and communities can use EventID for their internal events and sharing sessions.
+        </Typography>
       </Grid>
       <Grid item xs={12} sm={6}>
-      <Typography variant="body1" gutterBottom>
-        EventID is created for companies and communities internal use. With EventID you can
-      </Typography>
         <Paper className={classes.paper}>
-            <div>
-           
+          <div>
             <Typography variant="body1" gutterBottom>
-            <ul>
-              <li><CheckIcon />Create events for sharing sessions</li>
-              <li><CheckIcon />Edit events</li>
-              <li><CheckIcon />Delete events</li>
-         
-            </ul>
+              <h6 style={{color:'black'}}>With EventID it is easy to</h6>
+                <ul>
+                  <li><CheckIcon />Create events</li>
+                  <li><CheckIcon />Edit events</li>
+                  <li><CheckIcon />Delete events</li>
+                </ul>
             </Typography>
-            </div>
+          </div>
         </Paper>
       </Grid>
       <Grid item xs={12} sm={6}>
-      <CardMedia
+        <CardMedia
           component="img"
           className={classes.media}
           image={about1}
           title="people"
         />
       </Grid>
-    </Grid>
-  </div>
-  <Container maxWidth="sm" className={classes.secondContainer}>
-      <Typography variant="h5" gutterBottom className={classes.h5}>
-        How to use our App
-      </Typography>
-     
-   
-      <Typography variant="body1" gutterBottom className={classes.howto}>
-        Our App is very easy to use! You have two options to choose - to see all upcoming events OR to register and manage events by yoursefl.
-      </Typography>
-</Container>   
-</Container>
+      <Grid item xs={12}>
+        <Paper className={classes.paper1}>
+        <Typography variant="body1" gutterBottom>
+          <h6 style={{color:'black'}}>How to use EventID</h6>
+        <Typography variant="body1" gutterBottom className={classes.howto}>
+          <ol>
+            <li>Go to <b>Account</b> to create an event</li>
+            <li>Login if you already have an accout or press <b>Register</b></li>
+            <li>Fill all the fiedls and <b>Sing in</b></li>
+            <li>Create an event (name, description, date)</li>
+            <li>See all your events in the <b>Account</b></li>
+            <li>Stay logged in to <b>Edit</b> and <b>Delete</b> your events</li>
+            <li>Go to <b>Event List</b> to see all the upcoming events</li>
+            <li>Search for events by name, organizer or description</li>
+            <li>Go to <b>About</b> page and leave a feedback :)</li>
+          </ol>
+        </Typography>
+        </Typography>
+        </Paper>   
+      </Grid>
+      </Grid>
+    </div>  
+  </Container>
   </React.Fragment>
   </div>
      );
