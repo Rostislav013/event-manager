@@ -14,6 +14,7 @@ const useStyles = makeStyles (theme => ({
     //width: '100%',
     flexGrow: 1,
     marginBottom: '90px',
+   // backgroundColor: theme.palette.text.secondary,
   },
   paper: {
     padding: theme.spacing(2),
@@ -33,7 +34,7 @@ const useStyles = makeStyles (theme => ({
   },
   h5: {
       marginTop: '40px',
-      
+
   },
   secondContainer: {
     float:'left'
@@ -99,9 +100,37 @@ export default function Types() {
             <li>Stay logged in to <b>Edit</b> and <b>Delete</b> your events</li>
             <li>Go to <b>Event List</b> to see all the upcoming events</li>
             <li>Search for events by name, organizer or description</li>
-            <li>Go to <b>About</b> page and leave a feedback :)</li>
+            <li>Use the form below to send us a feedback :)</li>
           </ol>
         </Typography>
+  <Typography>
+      <h3>Email Us</h3>
+      <form method="POST" action="/send" id='client'>
+        <p>
+          <label>Name</label>
+          <input type="text" name="name"></input>
+        </p>
+        <p>
+          <label>Company</label>
+          <input type="text" name="company"></input>
+        </p>
+        <p>
+          <label>Email Address</label>
+          <input type="email" name="email"></input>
+        </p>
+        <p>
+          <label>Phone Number</label>
+          <input type="text" name="phone"></input>
+        </p>
+        <p class="full">
+          <label>Message</label>
+          <textarea name="message" rows="5"></textarea>
+        </p>
+        <p class="full">
+          <button type="submit" value="reset">Submit</button>
+        </p>
+      </form>
+      </Typography>
         </Typography>
         </Paper>   
       </Grid>
