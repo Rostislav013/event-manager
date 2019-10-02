@@ -169,7 +169,11 @@ return (
 
           </div>
         </div>
-        <Wrapper>
+        <Wrapper
+          style={{
+              marginBottom: '55px',
+          }}
+        >
         <Title>Create Event</Title>
         
 

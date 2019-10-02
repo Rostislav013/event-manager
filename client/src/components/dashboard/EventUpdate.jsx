@@ -121,9 +121,14 @@ class EventUpdate extends Component {
     render() {
         const { user } = this.props.auth; // dont delete
         //console.log(user.name);
-        const { name, organizator, description, date, time, forTime, userID } = this.state
+        const { name, organizator, description, date, time, forTime, userID } = this.state;
+        
         return (
-            <Wrapper>
+            <Wrapper
+            style={{
+                marginBottom: '55px',
+            }}
+            >
                 <Title>Update Event</Title>
 
                 <Label>Name: </Label>
