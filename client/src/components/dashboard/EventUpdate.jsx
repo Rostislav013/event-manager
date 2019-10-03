@@ -136,6 +136,7 @@ class EventUpdate extends Component {
               type="text"
               value={name}
               onChange={this.handleChangeInputName}
+              style={{width: '80vw'}}
           />
 
           <Label>Description: </Label>
@@ -143,6 +144,7 @@ class EventUpdate extends Component {
               type="text"
               value={description}
               onChange={this.handleChangeInputDescription}
+              style={{width: '80vw'}}
           />
 
          
