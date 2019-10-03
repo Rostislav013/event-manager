@@ -68,23 +68,31 @@ app.post('/send', (req, res) => {
 
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // true for 465, false for other ports
-    service: "Gmail",
+    // host: 'smtp.gmail.com',
+    host: 'smtp.ethereal.email',
+    // port: 465,
+    port: 587,
+    // secure: true, // true for 465, false for other ports
+    // service: "Gmail",
+    // auth: {
+    //     user: 'noreply.evmngr@gmail.com', // generated ethereal user
+    //     pass: '!234Qwer'  // generated ethereal password
+    // },
     auth: {
-        user: 'noreply.evmngr@gmail.com', // generated ethereal user
-        pass: '!234Qwer'  // generated ethereal password
+        user: 'jorge.crooks@ethereal.email',
+        pass: 'WYRFyfrJUvK5n1xxBu'
     },
-    tls:{
-      rejectUnauthorized:false
-    }
+    // tls:{
+    //   rejectUnauthorized:false
+    // }
   });
 
   // setup email data with unicode symbols
   let mailOptions = {
-      from: 'noreply.evmngr@gmail.com', // sender address
-      to: 'noreply.evmngr@gmail.com', // list of receivers
+      // from: 'noreply.evmngr@gmail.com', // sender address
+      from: 'jorge.crooks@ethereal.email',
+      // to: 'noreply.evmngr@gmail.com', // list of receivers
+      to: 'jorge.crooks@ethereal.email',
       subject: 'New Request from Event Manager App', // Subject line
       // text: '', // plain text body
       html: output // html body
