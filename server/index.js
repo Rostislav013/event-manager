@@ -73,6 +73,7 @@ app.post('/send', (req, res) => {
     // port: 465,
     port: 587,
     // secure: true, // true for 465, false for other ports
+    secure: false,
     // service: "Gmail",
     // auth: {
     //     user: 'noreply.evmngr@gmail.com', // generated ethereal user
@@ -82,9 +83,9 @@ app.post('/send', (req, res) => {
         user: 'jorge.crooks@ethereal.email',
         pass: 'WYRFyfrJUvK5n1xxBu'
     },
-    // tls:{
-    //   rejectUnauthorized:false
-    // }
+    tls:{
+      rejectUnauthorized:false
+    }
   });
 
   // setup email data with unicode symbols
