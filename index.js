@@ -26,7 +26,10 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
 });
-app.get('/about', (req, res) => {
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
+});
+app.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
 });
 app.get('/dashboard', (req, res) => {
