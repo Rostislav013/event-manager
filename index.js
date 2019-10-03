@@ -41,6 +41,12 @@ app.get('/events/update/:id', (req, res) => {
 app.get('/events/list', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
 });
+app.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
+});
+app.get('/dashboard/events/create', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
+});
 
 //DB Config
 const db = require('./config/keys').mongoURL;
