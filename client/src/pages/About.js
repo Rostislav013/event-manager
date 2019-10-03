@@ -108,23 +108,23 @@ export default function Types() {
       <form method="POST" action="/send" id='client'>
         <p>
           <label>Name</label>
-          <input type="text" name="name"></input>
+          <input type="text" name="name" required></input>
         </p>
         <p>
           <label>Company</label>
-          <input type="text" name="company"></input>
+          <input type="text" name="company" required></input>
         </p>
         <p>
           <label>Email Address</label>
-          <input type="email" name="email"></input>
+          <input type="email" name="email" required></input>
         </p>
         <p>
           <label>Phone Number</label>
-          <input type="text" name="phone"></input>
+          <input type="text" name="phone" required></input>
         </p>
         <p class="full">
           <label>Message</label>
-          <textarea name="message" rows="5"></textarea>
+          <textarea name="message" rows="5" required></textarea>
         </p>
         <p class="full">
           <button type="submit" value="reset">Submit</button>
